@@ -1,0 +1,45 @@
+spring:
+    application:
+        name: etmarket
+    thymeleaf:
+        cache: false
+    jpa:
+        hibernate:
+            ddl-auto: update
+        generate-ddl: true
+        database: mysql
+        database-platform: org.hibernate.dialect.MySQLDialect
+        show-sql: false
+        properties:
+            hibernate:
+                format_sql: true
+    devtools:
+        livereload:
+            enabled: true
+        restart:
+            enabled: true
+    config:
+        import: aws.yml 
+    # 메일 보내기 
+    mail: 
+      host: smtp.gmail.com # 서버호스트
+      port: 587 # 서버 포트
+      properties:
+        mail: 
+          smtp:
+            auth: true # 서버 인증        
+            starttls:
+              enable: true 
+              required: true  
+            connectiontimeout: 50000 # 서버 연결 대기 시간
+            timeout: 50000 # 서버 응답 대기 시간
+            writetimeout: 50000 # 클라이언트 작업 완료 대기 시간
+      auth-code-expiration-millis: 1800000  # 이메일 인증 만료 시간 30 * 60 * 1000 == 30분
+    # redis 설정
+    data:
+      redis:
+        port: 6379
+        host: 3.228.194.18
+
+server:
+  port: 9000

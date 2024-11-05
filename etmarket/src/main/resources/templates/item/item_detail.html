@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/item_detail.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/item_detail.js"></script>
+    <script src="/js/header.js"></script>
+    <title>Title</title>
+
+
+</head>
+
+<body>
+<div th:replace="fragments/header :: menu1">메뉴1부분</div>
+
+<div th:replace="fragments/header :: menu2">메뉴2부분</div>
+<div id="main_container">
+
+    <div class="header">
+        <div class="category-header">
+            <a href="#" style="margin-right: 0px">
+                <div class="home-icon-box">
+                    <img src="/image/home_icon.png" width="15" height="15" alt="홈 아이콘">
+                    홈
+                </div>
+            </a>
+            <div class="category-wrapper">
+                <img src="/image/category_select_icon.png" width="6" height="10" alt="카테고리 선택 아이콘">
+                <div class="category-container">
+                    <div class="category-box">
+                        <div class="selected-category" th:inline="text">
+                            [[${categoryName}]]
+                            <img src="/image/category_dropdown.png" width="10" height="6" alt="카테고리 화살표">
+                        </div>
+                        <div class="category-list">
+                            <a href="/search/category?category=식품" class="category-menu">식품</a>
+                            <a href="/search/category?category=패션" class="category-menu">패션</a>
+                            <a href="/search/category?category=전자기기" class="category-menu">전자기기</a>
+                            <a href="/search/category?category=생활주방" class="category-menu">생활/주방</a>
+                            <a href="/search/category?category=뷰티미용" class="category-menu">뷰티/미용</a>
+                            <a href="/search/category?category=도서" class="category-menu">도서</a>
+                            <a href="/search/category?category=티켓교환권" class="category-menu">티켓/교환권</a>
+                            <a href="/search/category?category=기타" class="category-menu">기타</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <div class="product-image-wrapper">
+                <div class="product-image-box">
+                    <div class="product-image-list">
+                        <img th:each="imgSrc : ${itemDetailDto.getItemImgDtoList()}" th:src="${imgSrc.getItemImgUrl()}" alt="" class="product-image">
+                    </div>
+                    <div th:if="${itemDetailDto.getDealStatus().name() eq '예약중'}" class="product-image-temp" th:text="예약중"></div>
+                    <div th:if="${itemDetailDto.getDealStatus().name() eq '거래완료'}" class="product-image-temp" th:text="판매완료"></div>
+                    <button direction="prev" class="prev-button">
+                        <img src="/image/prev_icon.png" width="12" height="22" alt="이전 이미지 버튼">s
+                    </button>
+                    <button direction="next" class="next-button">
+                        <img src="/image/next_icon.png" width="12" height="22" alt="이전 이미지 버튼">
+                    </button>
+                    <button class="zoom-button">
+                        <img src="/image/zoom_icon.png" width="16" height="16" alt="확대 버튼">
+                        확대
+                    </button>
+                    <div class="image-count-box">
+                    </div>
+
+                    <div id="zoom-image-modal" style="display: none;">
+                        <div class="modal-wrapper"></div>
+                        <button class="exit-modal">&times;</button>
+                        <div class="modal-content-wrapper">
+                            <div class="modal-content">
+                                <div class="modal-header" th:text="${itemDetailDto.getItemTitle()}">item title</div>
+                                <div class="modal-body">
+                                    <div class="modal-image-box">
+                                        <img src="" alt="" class="modal-image">
+                                    </div>
+                                </div>
+                                <div class="modal-footer-count-box">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="product-details">
+                <div class="tsc">
+                    <div class="title-container">
+                        <h1 class="product-title" th:text="${itemDetailDto.getItemTitle()}">item title</h1>
+                        <div class="product-price" th:inline="text">
+                            [[${itemDetailDto.getItemPrice()}]]<span>원</span>
+                        </div>
+                    </div>
+                    <div class="sub-info">
+                        <div class="box-container">
+                            <div class="wish-box">
+                                <img src="/image/wish_icon.png" width="16" height="16" alt="상품 상태 아이콘">
+                                <div class="wish-count" th:text="${itemDetailDto.getWishCount()}">wishcount</div>
+                                <span class="span-border"></span>
+                            </div>
+                            <div class="count-box">
+                                <img src="/image/count_icon.png" width="21" height="13" alt="상품 상태 아이콘">
+                                <div class="view-count" th:text="${itemDetailDto.getViewCount()}">viewcount</div>
+                                <span class="span-border"></span>
+                            </div>
+                            <div class="postdate-box">
+                                <img src="/image/update_icon.png" width="16" height="16" alt="상품 상태 아이콘">
+                                <div class="post-date" th:text="${updateTime}">updatetime</div>
+                            </div>
+                        </div>
+                        <button th:unless="${sellerDto.getSellerId() == uid}"  class="report-box">
+                            <a th:href="@{/report/item(id=${itemDetailDto.getItemId()})}" class="report-item-link">
+                                <img src="/image/report_icon.png" width="15" height="15" alt="신고 아이콘">
+                                신고하기
+                            </a>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="status-box">
+                            <div class="info-title">
+                                <span>•</span>
+                                <span>상품상태</span>
+                            </div>
+                            <div class="item-status" th:text="${itemStatus}">
+                                itemstatus
+                            </div>
+                        </div>
+                        <div class="delivery-fee-box">
+                            <div class="info-title">
+                                <span>•</span>
+                                <span>배송비</span>
+                            </div>
+                            <div class="delivery-fee" th:if="${itemDetailDto.getItemDeliveryPrice() == 0}">
+                                무료배송
+                            </div>
+                            <div class="delivery-fee" th:unless="${itemDetailDto.getItemDeliveryPrice() == 0 }" th:text="${itemDetailDto.getItemDeliveryPrice()} + '원'">
+
+                            </div>
+                        </div>
+                        <div class="location-box">
+                            <div class="info-title">
+                                <span>•</span>
+                                <span>직거래지역</span>
+                            </div>
+                            <div class="location-info" th:text="${itemDetailDto.getItemAddress()}">
+                                itemaddress
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="like-box">
+                        <button th:if="${isWishItem == true}" class="like" th:attr="data-item-id=${itemDetailDto.getItemId()}, data-user-id=${uid}">
+                            <img src="/image/wished_icon.png" width="16" height="16" alt="상품 상태 아이콘">
+                            <span>찜</span>
+                            <span th:if="${itemDetailDto.getWishCount() == 0}" class="like-count">0</span>
+                            <span th:unless="${itemDetailDto.getWishCount() == 0}" th:text="${itemDetailDto.getWishCount()}" class="like-count">wishcount</span>
+                        </button>
+                        <button th:unless="${isWishItem == true}" class="unlike" th:attr="data-item-id=${itemDetailDto.getItemId()}, data-user-id=${uid}">
+                            <img src="/image/unwished_icon.png" width="16" height="16" alt="상품 상태 아이콘">
+                            <span>찜</span>
+                            <span th:if="${itemDetailDto.getWishCount() == 0}" class="like-count">0</span>
+                            <span th:unless="${itemDetailDto.getWishCount() == 0}" th:text="${itemDetailDto.getWishCount()}" class="like-count">wishcount</span>
+                        </button>
+                    </div>
+                    <div th:if="${session.myUserName != null}">
+                        <button class="chat" th:onclick="|location.href='@{/et/chat/choose(userName=${session.myUserName}, itemId=${itemId})}'|">
+                            <!--                        <img src="/image/wish_icon.png" width="16" height="16" alt="상품 상태 아이콘">-->
+                            <span>채팅</span>
+                        </button>
+                    </div>
+                    <div th:if="${session.myUserName == null}">
+                        <button class="chat" th:onclick="|location.href='@{/login}'|">
+                            <!--                        <img src="/image/wish_icon.png" width="16" height="16" alt="상품 상태 아이콘">-->
+                            <span>채팅</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="additional-container">
+            <div class="item-info-container">
+                <div class="item-section">
+                    <div class="item-info">
+                        <div class="info-menu-title">상품정보</div>
+                        <div class="item-description">
+                            <div class="description-content">
+                                <p style="width: 663px;" th:text="${itemDetailDto.getItemContent()}">itemdescription
+                                </p>
+                            </div>
+                            <div class="item-detail-info">
+                                <div class="info-card">
+                                    <div class="item-info-title"><img src="/image/report_icon.png" width="16" height="18" alt="직거래 아이콘">직거래지역</div>
+                                    <div class="item-info-value">
+                                        <div><span th:text="${itemDetailDto.getItemAddress()}">address</span></div>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="item-info-title"><img src="/image/report_icon.png" width="16" height="18" alt="카테고리 아이콘">카테고리</div>
+                                    <div class="item-info-value">
+                                        <div class="category-info">
+                                            <a href="#" th:text="${categoryName}">categoryName</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="item-info-title"><img src="/image/report_icon.png" width="15" height="18" alt="상품태그 아이콘">상품태그</div>
+                                    <div class="item-info-value">
+                                        <a class="item-tag-link" th:each="tag : ${itemDetailDto.getDetailTagDtoList()}" th:text="'#'+${tag.getTagName()}"></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="similar-item-container">
+                        <h3>비슷한 상품 보기</h3>
+                        <ul class="similar-item-ul">
+                            <li class="similar-item" th:each="similarItem : ${similarItemList}">
+                                <a th:href="@{/items/{itemId}(itemId=${similarItem.getItemId()})}" class="similar-item-link">
+                                    <img th:src="${similarItem.getImgUrl()}" alt="" class="similar-item-img">
+                                    <div class="similar-item-info">
+                                        <span class="similar-item-price" th:text="${similarItem.getItemPrice()} + '원'">price</span>
+                                        <span class="similar-item-name" th:text="${similarItem.getItemTitle()}" >itemTitle</span>
+                                        <span class="similar-item-seller" th:text="${similarItem.getSellerName()}">sellername</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="side-seller-wrapper">
+                <div class="side-seller-container">
+                    <div class="side-seller-container2">
+                        <div class="info-menu-title">판매자정보</div>
+                        <div class="seller-info">
+                            <div class="seller-profile">
+                                <a th:href="@{/seller/{sellerId}/items(sellerId=${sellerDto.getSellerId()})}" class="seller-profile-image">
+                                    <img th:if="${sellerDto.getSellerImgUrl() != 'NoImage'}" th:src="${sellerDto.getSellerImgUrl()}" width="48" height="48" alt="판매자 프로필 이미지">
+                                    <img th:if="${sellerDto.getSellerImgUrl() == 'NoImage'}" src="/image/basic_profile_image.png" width="48" height="48" alt="기본 프로필 이미지">
+                                </a>
+                                <div class="seller-name">
+                                    <a th:href="@{/seller/{sellerId}/items(sellerId=${sellerDto.getSellerId()})}" class="seller-name-link" th:text="${sellerDto.getSellerName()}">sellername</a>
+                                    <div class="seller-sub-info">
+                                        <a th:href="@{/seller/{sellerId}/items(sellerId=${sellerDto.getSellerId()})}" class="sub-info-link" th:text="'상품'+${sellerDto.getSellItemCount()}">sellitemcount</a>
+                                        <a th:href="@{/seller/{sellerId}/items(sellerId=${sellerDto.getSellerId()})}" class="sub-info-link" th:text="'거래완료'+${sellerDto.getTransactionCount()}">tscount</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="seller-best-products">
+                                <a th:each="item : ${sellerDto.getSimpleItemDtoList()}" th:href="@{/items/{itemId}(itemId=${item.getItemId()})}" class="seller-product">
+                                    <img th:src="${item.getItemMainImg()}" width="120" height="96" alt="상품 이미지">
+                                    <div class="seller-price-tag">
+                                        <span class="seller-product-price" th:text="${item.getItemPrice()}">price</span>
+                                        원
+                                    </div>
+                                    <div class="seller-price-box"></div>
+                                </a>
+                            </div>
+                            <div class="more-button-wrapper">
+                                <a th:href="@{/seller/{sellerId}/items(sellerId=${sellerDto.getSellerId()})}" class="more-button-link">
+                                    상품 더보기 >
+                                </a>
+                            </div>
+                            <div class="seller-review-container">
+                                <div class="seller-review-title">
+                                    판매자 후기
+                                    <span class="seller-review-count" th:text="${sellerDto.getReviewCount()}">reviewcount</span>
+                                </div>
+                                <div th:each="review : ${sellerDto.getRevieweDtoList()}" class="seller-review-list">
+                                    <div class="seller-review-box">
+                                        <a th:href="@{/seller/{sellerId}/items(sellerId=${review.getReviewerId()})}" class="reviewer-profile-image">
+                                            <img th:if="${review.getReviewerImgUrl() != 'NoImage'}" th:src="${review.getReviewerImgUrl()}" width="32" height="32" alt="리뷰어 프로필 이미지">
+                                            <img th:if="${review.getReviewerImgUrl() == 'NoImage'}" src="/image/basic_profile_image.png" width="32" height="32" alt="리뷰어 프로필 이미지">
+                                        </a>
+                                        <div class="review-info-wrapper">
+                                            <div class="reviewer-name-date">
+                                                <a th:href="@{/seller/{sellerId}/items(sellerId=${review.getReviewerId()})}" class="reviewer-name" th:text="${review.getReviewerName()}">name</a>
+                                                <div class="review-date" th:text="${review.getReviewDate()}">date</div>
+
+                                            </div>
+                                            <div class="reviewer-rating-wrapper">
+                                                <div class="rating-score">
+                                                    <span th:each="star : ${#numbers.sequence(1, review.getReviewScore())}">
+                                                        <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                    </span>
+                                                    <span th:if="${review.getReviewScore() % 1.0 != 0}">
+                                                        <img src="/image/rating_star_half.png" width="15" height="14" alt="반 별점 이미지">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="review-content" th:text="${review.getReviewComment()}">
+                                                reviewcontent
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="seller-review-button-wrapper">
+                                    <a th:href="@{/seller/{sellerId}/reviews(sellerId=${sellerDto.getSellerId()})}" class="seller-review-button">판매자 후기 더보기 ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: company">기업설명부분</div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/seller_detail_review.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+
+    <title>Title</title>
+
+</head>
+<body>
+<div th:replace="fragments/header :: menu1">메뉴1부분</div>
+
+<div th:replace="fragments/header :: menu2">메뉴2부분</div>
+
+<div class="store-wrapper">
+    <div class="profile-container">
+        <div class="profile-details">
+            <div class="profile-image-section">
+                <div class="profile-image-wrapper">
+                    <div class="profile-image-box">
+                        <div class="profile-image-inner">
+                            <div class="profile-image-content">
+                                <div class="profile-image-before"></div>
+                            </div>
+                            <div class="profile-info">
+                                <img class="profile-image" src="/image/tempimage.png" width="100" height="100" alt="판매자 프로필 사진">
+                                <div class="rating-container"></div>
+                                <div class="rating-stars">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                </div>
+                                <div class="profile-links-box">
+                                    <a href="" class="profile-link">
+                                        상품
+                                        <b>32</b>
+                                    </a>
+                                    <a href="" class="profile-link">
+                                        거래완료
+                                        <b>33</b>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-info-container">
+                    <div class="profile-info-box">
+                        <div class="seller-name">Seller Nickname</div>
+                    </div>
+                    <div class="seller-detail-box">
+                        <div class="seller-detail">
+                            <img src="/image/shop_open.png" width="14" height="13" alt="상점 오픈 아이콘">
+                            판매시작일
+                            <div class="days-ago">224 일 전</div>
+                        </div>
+                        <div class="seller-detail">
+                            <img src="/image/sell_icon.png" width="14" height="13" alt="상품판매 아이콘">
+                            상품판매
+                            <div class="sold-count">123 회</div>
+                        </div>
+                    </div>
+                    <div class="store-description">
+                        지금 페이지는 상점 소개글 입니다. 안녕하세요 gpt 5입니다. 잘부탁 드립니다 hello this page is seller introduction description. im genius gpt5. thank you very
+                    </div>
+                    <div class="report-store">
+                        <a href="" class="report-link">
+                            <img src="/image/report_icon.png" width="14" height="14" alt="신고하기 아이콘">
+                            신고하기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-section">
+                <div class="nav-link-list">
+                    <a href="/seller/item" class="product-tab">
+                        상품
+                        <span class="product-count">32</span>
+                    </a>
+                    <a href="/seller/review" class="review-tab">
+                        후기
+                        <span class="review-count">13</span>
+                    </a>
+                </div>
+            </div>
+            <div class="a1">
+                <div class="a2">
+                    <div class="a3">
+                        <div class="a4">
+                            <div class="a5">
+                                상점후기
+                                <span class="a6">23</span>
+                            </div>
+                            <div class="b5">
+                                <div class="b6">
+                                    <div class="a7">
+                                        <div class="a8">5</div>
+                                        <div class="b8">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                        </div>
+                                    </div>
+                                    <div class="b7"></div>
+                                    <div class="c7">
+                                        <div class="c8">100%</div>
+                                        <div class="d8">만족후기</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="b3">
+                        <div class="b4">
+                            <a href="" class="c5">
+                                <img src="/image/tempimage.png" width="60" height="60" alt="리뷰어 이미지">
+                            </a>
+                            <div class="d5">
+                                <div class="c6">
+                                    <dv class="d7">
+                                        <a href="" class="e8">에우리케</a>
+                                        <div class="f8">1개월 전</div>
+                                    </dv>
+                                    <a href="" class="e7">
+                                        <div class="g8">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                        </div>
+                                    </a>
+                                </div>
+                                <a href="" class="d6">
+                                    <button class="f7">[미개봉 2장] 열혈강호 홍콩반점 카드팩 팝니다
+                                        <img src="/image/category_select_icon.png" width="6" height="10" alt="화살표 아이콘">
+                                    </button>
+                                </a>
+                                <div class="e6">좋은 거래 감사합니다.
+                                    예쁘게 잘 모으겠습니다 :)안녕하세요 안녕하세요 안녕하ㅔ요 가나다라마바사아자차카타파하 가나다라마밧아자차카알넝리너이ㅏ러거나어가ㅣㄴ어ㅣㅏㅓㄴㅇ라ㅣㅓㄴ아ㅣ거ㅣ나어리ㅏㄴ어리ㅏㄴ거ㅏㄴ어린어린아ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ러</div>
+                            </div>
+                        </div>
+                        <div class="b4">
+                            <a href="" class="c5">
+                                <img src="/image/tempimage.png" width="60" height="60" alt="리뷰어 이미지">
+                            </a>
+                            <div class="d5">
+                                <div class="c6">
+                                    <dv class="d7">
+                                        <a href="" class="e8">에우리케</a>
+                                        <div class="f8">1개월 전</div>
+                                    </dv>
+                                    <a href="" class="e7">
+                                        <div class="g8">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                        </div>
+                                    </a>
+                                </div>
+                                <a href="" class="d6">
+                                    <button class="f7">[미개봉 2장] 열혈강호 홍콩반점 카드팩 팝니다
+                                        <img src="/image/category_select_icon.png" width="6" height="10" alt="화살표 아이콘">
+                                    </button>
+                                </a>
+                                <div class="e6">좋은 거래 감사합니다.
+                                    예쁘게 잘 모으겠습니다 :)안녕하세요 안녕하세요 안녕하ㅔ요 가나다라마바사아자차카타파하 가나다라마밧아자차카알넝리너이ㅏ러거나어가ㅣㄴ어ㅣㅏㅓㄴㅇ라ㅣㅓㄴ아ㅣ거ㅣ나어리ㅏㄴ어리ㅏㄴ거ㅏㄴ어린어린아ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ러</div>
+                            </div>
+                        </div>
+                        <div class="b4">
+                            <a href="" class="c5">
+                                <img src="/image/tempimage.png" width="60" height="60" alt="리뷰어 이미지">
+                            </a>
+                            <div class="d5">
+                                <div class="c6">
+                                    <dv class="d7">
+                                        <a href="" class="e8">에우리케</a>
+                                        <div class="f8">1개월 전</div>
+                                    </dv>
+                                    <a href="" class="e7">
+                                        <div class="g8">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                        </div>
+                                    </a>
+                                </div>
+                                <a href="" class="d6">
+                                    <button class="f7">[미개봉 2장] 열혈강호 홍콩반점 카드팩 팝니다
+                                        <img src="/image/category_select_icon.png" width="6" height="10" alt="화살표 아이콘">
+                                    </button>
+                                </a>
+                                <div class="e6">좋은 거래 감사합니다.
+                                    예쁘게 잘 모으겠습니다 :)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c3">
+                        <button class="c4">
+                            <div class="e5">상점후기 더보기</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: company">기업설명부분</div>
+</body>
+</html>

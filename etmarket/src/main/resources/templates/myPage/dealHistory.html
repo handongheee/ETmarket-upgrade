@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/dealManage.css">
+    <link rel="stylesheet" type="text/css" href="/css/dealHistory.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/dealHistory.js"></script>
+    <title>거래내역 | ET마켓</title>
+    <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: menu1}">메뉴1부분</div>
+<div th:replace="~{fragments/header :: menu2}">메뉴2부분</div>
+
+<div class="sc-dTsoBL qMyCA">
+    <div class="sc-btewqU IQTNO">
+        <nav class="sc-hAnkBK bvTSLH">
+            <div class="sc-bJTOcE bwpcVz">
+                <a class="sc-DNdyV ihLswr" th:href="@{/item/like}">찜목록</a>
+            </div>
+            <div class="sc-bJTOcE cxNxJu">
+                <a class="sc-DNdyV ihLswr" th:href="@{/deal/manage}">상품관리</a>
+            </div>
+            <div class="sc-bJTOcE bwpcVz">
+                <a class="sc-geAPOV fEXFkE" th:href="@{/deal/history}" >거래내역</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="sc-kWHCRG iWvVoD">
+        <main class="sc-AUpyg iPTxLm">
+            <header class="sc-ijnzTp iWlavc">
+                <form class="sc-fUdGnz fUdmwl" style="margin-right: 1rem;" method="GET" action="/deal/manage">
+                    <input type="text" name="keyword" placeholder="상품명을 입력해주세요." value="" />
+                    <button type="submit" class="sc-dzOgQY bXZIiF"></button>
+                </form>
+                <div style="display: flex; align-items: center; margin-left: auto;">
+                    <div id="select-3">
+                        <div id="option-list-3" style="display: flex; column-gap: 24px;">
+                            <a class="item_status sell-history">판매내역</a>
+                            <a class="item_status buy-history">구매내역</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section class="TZQfU">
+                <!--판매내역/구매내역 출력-->
+                <div th:utext="${sellHistoryHtml}"></div>
+            </section>
+
+            <input type="hidden" class="userId" name="userId" th:data-userid="${userId}">
+            <!-- 후기 남기기 모달창 -->
+            <div class="ratingModal" style="display:none;">
+                <i class="bi bi-x-lg close-button" style="cursor: pointer;"></i>
+                <h2 th:text="${userName}+ '님,'"></h2>
+                <h2><span class="dealPartName"></span>님과의 거래는 어떠셨나요?</h2>
+                <!--<input type="number" class="ratingInput" step="0.5" max="5" min="0">-->
+
+                <div class="rating">
+                    <label class="rating__label rating__label--half" for="starhalf">
+                        <input type="radio" id="starhalf" class="rating__input" name="rating" value="0.5">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--full" for="star1">
+                        <input type="radio" id="star1" class="rating__input" name="rating" value="1">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--half" for="star1half">
+                        <input type="radio" id="star1half" class="rating__input" name="rating" value="1.5">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--full" for="star2">
+                        <input type="radio" id="star2" class="rating__input" name="rating" value="2">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--half" for="star2half">
+                        <input type="radio" id="star2half" class="rating__input" name="rating" value="2.5">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--full" for="star3">
+                        <input type="radio" id="star3" class="rating__input" name="rating" value="3">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--half" for="star3half">
+                        <input type="radio" id="star3half" class="rating__input" name="rating" value="3.5">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--full" for="star4">
+                        <input type="radio" id="star4" class="rating__input" name="rating" value="4">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--half" for="star4half">
+                        <input type="radio" id="star4half" class="rating__input" name="rating" value="4.5">
+                        <span class="star-icon"></span>
+                    </label>
+                    <label class="rating__label rating__label--full" for="star5">
+                        <input type="radio" id="star5" class="rating__input" name="rating" value="5">
+                        <span class="star-icon"></span>
+                    </label>
+                </div>
+
+                <br>
+                <h3>소중한 후기를 남겨주세요!</h3>
+                <div >더 나은 중고거래 환경을 만드는데 보탬이 돼요.</div>
+                <textarea  class="commentInput" placeholder="여기에 적어주세요."></textarea>
+                <br>
+                <button class="submitRatingButton">후기 남기기</button>
+            </div>
+
+        </main>
+    </div>
+    <div th:replace="~{fragments/footer :: company}">기업설명부분</div>
+</div>
+<script>
+   const rateWrap = document.querySelectorAll('.rating'),
+        label = document.querySelectorAll('.rating .rating__label'),
+        input = document.querySelectorAll('.rating .rating__input'),
+        labelLength = label.length,
+        opacityHover = '0.5';
+
+    let stars = document.querySelectorAll('.rating .star-icon');
+
+    checkedRate();
+
+    rateWrap.forEach(wrap => {
+        wrap.addEventListener('mouseenter', () => {
+            stars = wrap.querySelectorAll('.star-icon');
+
+            stars.forEach((starIcon, idx) => {
+                starIcon.addEventListener('mouseenter', () => {
+                    initStars();
+                    filledRate(idx, labelLength);
+
+                    for (let i = 0; i < stars.length; i++) {
+                        if (stars[i].classList.contains('filled')) {
+                            stars[i].style.opacity = opacityHover;
+                        }
+                    }
+                });
+
+                starIcon.addEventListener('mouseleave', () => {
+                    starIcon.style.opacity = '1';
+                    checkedRate();
+                });
+
+                wrap.addEventListener('mouseleave', () => {
+                    starIcon.style.opacity = '1';
+                });
+            });
+        });
+    });
+
+    function filledRate(index, length) {
+        if (index <= length) {
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add('filled');
+            }
+        }
+    }
+
+    function checkedRate() {
+        let checkedRadio = document.querySelectorAll('.rating input[type="radio"]:checked');
+
+
+        initStars();
+        checkedRadio.forEach(radio => {
+            let previousSiblings = prevAll(radio);
+
+            for (let i = 0; i < previousSiblings.length; i++) {
+                previousSiblings[i].querySelector('.star-icon').classList.add('filled');
+            }
+
+            radio.nextElementSibling.classList.add('filled');
+
+            function prevAll() {
+                let radioSiblings = [],
+                    prevSibling = radio.parentElement.previousElementSibling;
+
+                while (prevSibling) {
+                    radioSiblings.push(prevSibling);
+                    prevSibling = prevSibling.previousElementSibling;
+                }
+                return radioSiblings;
+            }
+        });
+    }
+
+    function initStars() {
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].classList.remove('filled');
+        }
+    }
+
+
+
+
+   document.addEventListener('DOMContentLoaded', function () {
+       const historySection = document.querySelector('.TZQfU');
+
+       // 후기 남기기 버튼 클릭 처리 (이벤트 위임)
+       historySection.addEventListener('click', function(event) {
+           if (event.target.classList.contains('fbpoRr') && event.target.classList.contains('leaveRatingButton')) {
+               // 후기 남기기 버튼이 클릭된 경우
+               const button = event.target;
+
+               // 1. 세션에서 로그인한 유저 ID를 가져오기
+               const userIdInput = button.parentElement.querySelector('input[name="userId"]');
+               // 2. dealId를 가져오기
+               const dealIdInput = button.parentElement.querySelector('input[name="dealId"]');
+               if (!dealIdInput) {
+                   console.error('dealId input not found');
+                   return;
+               }
+               const dealId = dealIdInput.value;
+
+               if (!userIdInput) {
+                   console.error('userId 입력 필드를 찾을 수 없습니다.');
+                   return;
+               }
+               const reviewerId = userIdInput.value;
+
+               const url = `/rating/${dealId}/getTargetId?reviewerId=${encodeURIComponent(reviewerId)}`;
+
+               // 3. 서버로부터 거래 상대방 ID를 가져오기
+               fetch(url)
+                   .then(response => {
+                       if (!response.ok) {
+                           throw new Error('서버로부터 거래 상대방 ID를 가져오는 데 실패했습니다.');
+                       }
+                       return response.json();
+                   })
+                   .then(data => {
+                       const targetId = data.targetId;
+                       // 4. 모달 창 열기 및 리뷰 작성 함수 호출
+                       openRatingModal(dealId, reviewerId, targetId);
+                   })
+                   .catch(error => {
+                       console.error('Error:', error);
+                       alert(error.message);
+                   });
+           }
+       });
+
+
+
+           // X 아이콘 클릭 시 모달 창 닫기
+           $(".close-button").click(function() {
+               $(".ratingModal").hide();
+               initStars();
+           })
+
+
+
+       // 모달 창을 열고 리뷰를 작성하도록 하는 함수
+       function openRatingModal(dealId, reviewerId, targetId) {
+           // 모달 창 열기
+           document.querySelector('.ratingModal').style.display = 'block';
+
+           // 평가 등록 버튼에 클릭 이벤트 추가
+           document.querySelector('.submitRatingButton').onclick = function () {
+               const ratingElements = document.querySelectorAll('.rating .rating__input');
+               let ratingValue;
+
+               ratingElements.forEach(radio => {
+                   if (radio.checked) {
+                       ratingValue = parseFloat(radio.value); // 선택된 별점 값을 가져오기
+                   }
+               });
+
+               const comment = document.querySelector('.commentInput').value;
+
+               const ratingData = {
+                   dealId: dealId,
+                   reviewerId: reviewerId,
+                   targetId: targetId,
+                   rating: ratingValue,
+                   comment: comment
+               };
+
+               // 서버로 평가 데이터 전송
+               fetch('/rating/leave', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(ratingData)
+               })
+                   .then(response => {
+                       if (!response.ok) {
+                           throw new Error('평가 저장에 실패했습니다.');
+                       }
+                       return response.json();
+                   })
+                   .then(data => {
+                       console.log('Success:', data);
+                       alert('리뷰가 성공적으로 저장되었습니다.');
+                       document.querySelector('.ratingModal').style.display = 'none'; // 모달 창 닫기
+                   })
+                   .catch(error => {
+                       console.error('Error:', error);
+                       alert(error.message);
+                   });
+           };
+       }
+   });
+
+</script>
+</body>
+</html>

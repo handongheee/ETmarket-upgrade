@@ -1,0 +1,284 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+}
+body, input, textarea, select, button {
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    outline: 0px;
+    border: 0px;
+}
+.fanqbi {
+    background: white;
+}
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.ezgzFX {
+    position: relative;
+    max-width: 1024px;
+    margin: 0px auto;
+    background: white;
+}
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 배너 스타일 하다가 그만 둠>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..*/
+.kind_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.kind_slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.kind_slider div {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.kind_slider img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.arrow a {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.arrow .prev {
+    left: 10px;
+}
+
+.arrow .next {
+    right: 10px;
+}
+
+/* 배너 스타일 하다가 그만 둠>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..*/
+
+.cdQPxm {
+    position: relative;
+    margin: 16px auto 0px;
+    max-width: 1024px;
+    height: 200px;
+}
+.kqLILu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
+}
+img {
+    vertical-align: bottom;
+}
+img {
+    border-style: none;
+}
+.ecgMIs {
+    position: absolute;
+    width: 94px;
+    height: 94px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 7px 0px;
+    padding: 8px;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+    top: 53px;
+    left: 155px;
+    bottom: 53px;
+}
+.ewWDsE {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.dCIUug {
+    width: 1024px;
+    margin: auto;
+    padding: 3.5rem 0px 1.5rem;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section {
+    display: block;
+}
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px;
+}
+.dCIUug h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.kSnlsd {
+    display: flex;
+    flex-wrap: wrap;
+}
+.eCFZgW {
+    width: 193px;
+    margin-right: 11px;
+    margin-bottom: 11px;
+}
+.dGgfzI {
+    border: 1px solid rgb(238, 238, 238);
+    background: rgb(255, 255, 255);
+    display: block;
+}
+a {
+    color: rgb(33, 33, 33);
+    text-decoration: none;
+    cursor: pointer;
+}
+a {
+    background-color: transparent;
+}
+.efblGl {
+    position: relative;
+    width: 100%;
+    height: 194px;
+}
+.dwFxLs {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    display: flex;
+    gap: 5px;
+}
+.emrreW {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+.bKyKhs {
+    padding: 15px 10px;
+    height: 80px;
+}
+.gEaPXm {
+    position: relative;
+    font-size: 14px;
+    padding-bottom: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.dcncOY {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 20px;
+}
+.eTsiJR {
+    font-size: 16px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.jMaEM {
+    font-size: 12px;
+    color: rgb(136, 136, 136);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

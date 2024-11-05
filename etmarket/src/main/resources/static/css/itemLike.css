@@ -1,0 +1,259 @@
+.dfsUMO {
+    font-size: 18px;
+    padding: 50px 0px 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.dLpRgo {
+    color: rgb(247, 47, 51);
+}
+
+.csJElQ {
+    margin-bottom: 30px;
+}
+
+.lnBpRH {
+    margin: 25px 0px 20px;
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.kEasLh {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.foqDNf {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgb(238, 238, 238);
+    cursor: pointer;
+    transition: border 0.2s ease 0s, background-color 0.2s ease 0s;
+    position: relative;
+}
+
+.foqDNf::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent rgb(204, 204, 204) rgb(204, 204, 204) transparent;
+    width: 8px;
+    height: 14px;
+    transform: rotate(40deg);
+    transform-origin: 100% 100%;
+}
+
+.foqDNf::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    width: 0px;
+    height: 0px;
+    transform: rotate(40deg);
+    transform-origin: 100% 100%;
+    transition: width 0.1s ease-out 0s, height 0.1s ease-out 0.1s;
+}
+
+.kEasLh button {
+    margin-left: 10px;
+}
+
+ .hwayJk {
+     padding: 0px 10px;
+     height: 28px;
+     border: 1px solid rgb(238, 238, 238);
+     display: flex;
+     -webkit-box-align: center;
+     align-items: center;
+     -webkit-box-pack: center;
+     justify-content: center;
+     font-size: 13px;
+     background: rgb(255, 255, 255);
+     color: rgb(136, 136, 136);
+ }
+
+ button {
+     background-color: transparent;
+     cursor: pointer;
+     outline: none;
+ }
+
+.dRITiR {
+    display: flex;
+    font-size: 13px;
+}
+
+.kvYcBO {
+    margin-right: 20px;
+    position: relative;
+    display: block;
+}
+
+.irojwT {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.fyCynF:nth-last-child(-n+2):nth-child(2n+1), .fyCynF:nth-last-child(-n+2):nth-child(2n+1) ~ .fyCynF {
+    margin-bottom: 0px;
+}
+
+
+ .fyCynF {
+     width: 502px;
+     margin-bottom: 20px;
+ }
+
+.kVTaan {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    /*border: 1px solid rgb(238, 238, 238);*/
+    position: relative;
+}
+
+
+ a {
+     color: rgb(33, 33, 33);
+     text-decoration: none;
+     cursor: pointer;
+ }
+
+.hkOzft {
+    position: relative;
+    width: 139px;
+    flex-shrink: 0;
+}
+
+.eyCCxv {
+    background: rgba(0, 0, 0, 0.4);
+    font-size: 13px;
+    padding: 2px 3px 3px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.iovqKN {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.huitHV {
+    width: 363px;
+    flex-shrink: 0;
+}
+
+.jgwDOt {
+    padding: 0px 64px 0px 20px;
+    width: 100%;
+}
+
+.deAGaV {
+    margin: 18px 0px 10px;
+    width: 100%;
+    height: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+   /* overflow: hidden;*/
+}
+
+.ySSXL {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+}
+
+.ySSXL {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+}
+
+.ySSXL div {
+    position: relative;
+}
+
+.ySSXL div::after {
+    content: "원";
+    position: absolute;
+    font-weight: normal;
+    font-size: 13px;
+    top: 3px;
+    right: -15px;
+}
+
+.gimUQy {
+    height: 40px;
+    display: flex;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(136, 136, 136);
+    font-size: 12px;
+}
+
+.dUXZPL {
+    height: 40px;
+    display: flex;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 20px;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    box-sizing: border-box;
+}
+
+.kAXfEi {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    border: 1px solid rgb(238, 238, 238);
+    position: relative;
+}
+
+.fOnekV:nth-last-child(-n+2):nth-child(2n+1), .fOnekV:nth-last-child(-n+2):nth-child(2n+1) ~ .fOnekV {
+    margin-bottom: 0px;
+}
+
+ .fOnekV {
+     width: 502px;
+     margin-bottom: 20px;
+ }
+
+.ipkdeR {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.hwfvVn {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+}
+

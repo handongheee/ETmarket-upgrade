@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/layout/layout :: head('회원 관리')">
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" th:replace="admin/layout/layout :: sidebar('userlist')">
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" th:replace="admin/layout/layout :: topbar">
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">User List</h1>
+
+
+
+                <!-- DataTables Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">유저 목록</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>유저 ID</th>
+                                    <th>이름</th>
+                                    <th>닉네임</th>
+                                    <th>이메일</th>
+                                    <th>상태</th>
+                                    <th>작업</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user: ${users}">
+                                    <td th:text="${user.userId}"></td>
+                                    <td th:text="${user.userLoginId}"></td>
+                                    <td th:text="${user.userName}"></td>
+                                    <td th:text="${user.userEmail}"></td>
+                                    <td>
+                                        <span th:text="${user.userStatus}"
+                                              th:classappend="${user.userStatus.name() == 'ACTIVE'} ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger'">
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm" th:attr="onclick='editUser(' + ${user.userId} + ')'">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm" th:attr="onclick='deleteUser(' + ${user.userId} + ')'">
+                                            <i class="fas fa-trash-alt text-danger"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white" th:replace="admin/layout/layout :: footer">
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Include common elements and scripts -->
+<th:block th:replace="admin/layout/layout :: commonElementsAndScripts"></th:block>
+
+<!-- Custom scripts for this page -->
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "pageLength": 10,
+            "lengthMenu": [10, 25, 50, 75, 100],
+            "language": {
+                "search": "검색:",
+                "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+                "zeroRecords": "데이터가 없습니다.",
+                "info": "_TOTAL_ 개의 항목 중 _START_ - _END_",
+                "infoEmpty": "항목 없음",
+                "infoFiltered": "(전체 _MAX_ 개의 항목 중 필터링됨)",
+                "paginate": {
+                    "first": "처음",
+                    "last": "마지막",
+                    "next": "다음",
+                    "previous": "이전"
+                }
+            }
+        });
+    });
+    function editUser(userId) {
+        //alert("수정하기: " + userId);
+        window.location.href = '/admin/userdetail/' + userId;
+    }
+
+    function deleteUser(userId) {
+        //alert("삭제하기: " + userId);
+        if (confirm('정말로 이 회원을 삭제하시겠습니까?')) {
+            $.ajax({
+                url: '/admin/user/' + userId,
+                type: 'DELETE',
+                success: function(result) {
+                    location.reload();
+                },
+                error: function(err) {
+                    console.error('삭제 실패:', err);
+                    alert('삭제에 실패했습니다.');
+                }
+            });
+        }
+    }
+</script>
+
+</body>
+
+</html>

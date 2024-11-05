@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/itemInsertForm.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <title>Title</title>
+    <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div th:replace="fragments/header :: menu1">메뉴1부분</div>
+    <div th:replace="fragments/header :: menu2">메뉴2부분</div>
+
+    <div class="hmUNzn">
+        <form class="flimjd" id="itemInsertForm" action="update" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="userId" th:value="${itemDto.userId}">
+            <input type="hidden" name="itemId" th:value="${itemDto.itemId}">
+            <h2 class="fGSdXi">상품정보</h2>
+            <ul class="hcyuoc">
+                <li class="iZffvT">
+                    <div class="kBWTWP">상품이미지</div>
+                    <div class="nqDMw">
+                        <ul class="jfcGsd" id="imagePreviewList">
+                            <li class="cXAiiO">
+                                이미지 등록
+                                <input type="file" name="itemImgUpload" multiple onchange="previewImages(event)">
+                                <input type="hidden" name="itemImgUploadCount" th:value="${itemImgCount}">
+                                <input type="hidden" name="itemDeleteImgIds">
+                            </li>
+                            <li th:each="itemImgDto, i : ${itemImgDtos}" class="eYzyqx">
+                                <div class="imMXYo" th:if="${i.index == 0}" style="display: flex;">대표 이미지</div>
+                                <div class="imMXYo" th:unless="${i.index == 0}">대표 이미지</div>
+                                <img th:src="${itemImgDto.itemImg}">
+                                <button type="button" class="cRcpOX" th:value="${itemImgDto.itemImgId}" th:onclick="'removeImage(event, ' + ${i.index} + ')'" th:data-index="${i.index}"></button>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="iZffvT">
+                    <div class="kBWTWP">상품명</div>
+                    <div class="nqDMw">
+                        <input type="text" name="itemTitle" autocomplete="off" placeholder="상품명을 입력해주세요" th:value="${itemDto.itemTitle}" requiredInput style="width: 100%;">
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                    </div>
+                </li>
+                <li class="iZffvT">
+                    <div class="kBWTWP">카테고리</div>
+                    <div class="nqDMw">
+                        <div class="bDakqE">
+                            <div class="kPDVsx">
+                                <ul class="fAfkpF">
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">식품</button>
+                                    </li>
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">패션</button>
+                                    </li>
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">전자기기</button>
+                                    </li>
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">생활주방</button>
+                                    </li>
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">뷰티미용</button>
+                                    </li>
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">도서</button>
+                                    </li>
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">티켓교환권</button>
+                                    </li>
+                                    <li class="btyiVm">
+                                        <button type="button" class="cVEXWs" onclick="fillInputCategory(this)">기타</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <span>
+                            선택한 카테고리:
+                            <input type="text" name="categoryName" class="noClickInput" id="categoryName" th:value="${itemDto.categoryName}" requiredInput style="border: none; font-weight: bold;">
+                        </span>
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                    </div>
+                </li>
+                <li class="iZffvT">
+                    <div class="kBWTWP">상품상태</div>
+                    <div class="nqDMw">
+                        <div class="iCpTyu">
+                            <label class="kAOWfX">
+                                <input type="radio" name="itemStatusSelector" value="새상품" onclick="fillHiddenInputItemStatus(this)">새상품
+                                <span class="fwUJOX">사용하지 않은 새 상품</span>
+                            </label>
+                            <label class="kAOWfX">
+                                <input type="radio" name="itemStatusSelector" value="사용감없음" onclick="fillHiddenInputItemStatus(this)">사용감없음
+                                <span class="fwUJOX">사용은 했지만 눈에 띄는 흔적이나 얼룩이 없음</span>
+                            </label>
+                            <label class="kAOWfX">
+                                <input type="radio" name="itemStatusSelector" value="사용감적음" onclick="fillHiddenInputItemStatus(this)">사용감적음
+                                <span class="fwUJOX">눈에 띄는 흔적이나 얼룩이 약간 있음</span>
+                            </label>
+                            <label class="kAOWfX">
+                                <input type="radio" name="itemStatusSelector" value="사용감많음" onclick="fillHiddenInputItemStatus(this)">사용감많음
+                                <span class="fwUJOX">눈에 띄는 흔적이나 얼룩이 많이 있음</span>
+                            </label>
+                            <label class="kAOWfX">
+                                <input type="radio" name="itemStatusSelector" value="고장파손상품" onclick="fillHiddenInputItemStatus(this)">고장파손상품
+                                <span class="fwUJOX">기능 이상이나 외관 손상 등으로 수리/수선 필요</span>
+                            </label>
+                            <input type="text" name="itemStatus" class="noClickInput" id="itemStatus" th:value="${itemDto.itemStatus}" requiredInput style="width: 0; height: 0; border: none;">
+                        </div>
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                    </div>
+                </li>
+                <li class="iZffvT">
+                    <div class="kBWTWP">설명</div>
+                    <div class="nqDMw">
+                        <textarea name="itemContent" class="foFMur" rows="6" placeholder="브랜드, 모델명, 구매 시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요." th:text="${itemDto.itemContent}" requiredInput></textarea>
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                    </div>
+                </li>
+                <li class="iZffvT">
+                    <div class="kBWTWP">태그</div>
+                    <div class="nqDMw">
+                        <input type="text" name="itemTagText" placeholder="태그를 입력해 주세요. (최대 5개)" th:value="${itemTags}" oninput="tagInputLimit(this)" style="width: 100%">
+                        <ul class="jijPWs">
+                            <li>
+                                <p>- 태그는 띄어쓰기로 구분되며 최대 9자까지 입력할 수 있어요.</p>
+                            </li>
+                            <li>
+                                <p>- 내 상품을 다양한 태그로 표현해 보세요.</p>
+                            </li>
+                            <li>
+                                <p>- 사람들이 내 상품을 더 잘 찾을 수 있어요.</p>
+                            </li>
+                            <li>
+                                <p>- 상품과 관련 없는 태그를 입력할 경우, 판매에 제재를 받을 수 있어요.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <h2 class="fGSdXi">가격</h2>
+            <ul class="hcyuoc">
+                <li class="iZffvT">
+                    <div class="kBWTWP">가격</div>
+                    <div class="nqDMw">
+                        <div class="kCtnOJ">
+                            <input type="text" name="itemPriceText" autocomplete="off" placeholder="가격을 입력해 주세요." th:value="${itemDto.itemPriceText}" oninput="formatNumber(this)" requiredInput style="width: 300px;">
+                            <span class="czNgfh">원</span>
+                        </div>
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                        <label class="jwzUPL">
+                            <input type="checkbox" name="priceStatusCheck" th:checked="${itemDto.priceStatusCheck}">가격제안 받기
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            <h2 class="fGSdXi">택배거리</h2>
+            <ul class="hcyuoc">
+                <li class="iZffvT" style="align-items: center;">
+                    <div class="kBWTWP">배송비</div>
+                    <div class="nqDMw">
+                        <div style="margin-bottom: 20px;">
+                            <label style="margin-right: 40px;">
+                                <input type="radio" name="deliveryStatusSelector" value="포함" onclick="fillHiddenInputDeliveryStatus(this)">배송비포함
+                            </label>
+                            <label style="margin-right: 40px;">
+                                <input type="radio" name="deliveryStatusSelector" value="비포함" onclick="fillHiddenInputDeliveryStatus(this)">배송비별도
+                            </label>
+                            <input type="text" name="deliveryStatus" class="noClickInput" id="deliveryStatus" th:value="${itemDto.deliveryStatus}" requiredInput style="width: 0; height: 0; border: none;">
+                            <span class="errorMessage">필수 입력 항목입니다.</span>
+                        </div>
+                        <div id="itemDeliveryPriceInput" style="display: none;">
+                            <div class="kCtnOJ">
+                                <span style="margin-right: 20px;">배송비</span>
+                                <input type="text" name="itemDeliveryPriceText" id="itemDeliveryPriceText" autocomplete="off" placeholder="배송비를 입력해 주세요" th:value="${itemDto.itemDeliveryPriceText}" oninput="formatNumber(this)" requiredInput style="width: 300px;">
+                                <span class="czNgfh" style="right: 510px;">원</span>
+                            </div>
+                            <span class="errorMessage">필수 입력 항목입니다.</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <h2 class="fGSdXi">추가정보</h2>
+            <ul class="hcyuoc">
+                <li class="iZffvT">
+                    <div class="kBWTWP">수량</div>
+                    <div class="nqDMw">
+                        <div class="kCtnOJ">
+                            <input type="text" name="itemCountText" autocomplete="off" placeholder="개수를 입력해 주세요." th:value="${itemDto.itemCountText}" oninput="formatNumber(this)" requiredInput style="width: 300px;">
+                            <span class="czNgfh">개</span>
+                        </div>
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                    </div>
+                </li>
+                <li class="iZffvT">
+                    <div class="kBWTWP">직거래</div>
+                    <div class="nqDMw">
+                        <label style="margin-right: 40px;">
+                            <input type="radio" name="dealHowSelector" value="가능" onclick="fillHiddenInputItemDealHow(this)">가능
+                        </label>
+                        <label style="margin-right: 40px;">
+                            <input type="radio" name="dealHowSelector" value="불가능"  onclick="fillHiddenInputItemDealHow(this)">불가능
+                        </label>
+                        <input type="text" name="dealHow" class="noClickInput" id="dealHow" th:value="${itemDto.dealHow}" requiredInput style="width: 0; height: 0; border: none;">
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                    </div>
+                </li>
+                <li class="iZffvT">
+                    <div class="kBWTWP">주소</div>
+                    <div class="nqDMw">
+                        <input type="text" name="roadAddress" class="feIrCR noClickInput" id="sample4_roadAddress" placeholder="도로명주소" th:value="${itemDto.roadAddress}" requiredInput>
+                        <input type="text" name="detailAddress" class="feIrCR" id="sample4_detailAddress" placeholder="상세주소" th:value="${itemDto.detailAddress}">
+                        <input type="button" onclick="sample4_execDaumPostcode()" value="주소검색" style="width: 100px;">
+                        <span id="guide" style="color:#999;display:none"></span>
+                        <span class="errorMessage">필수 입력 항목입니다.</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="kXPprh">
+                <button type="submit" class="ebVkRz">수정하기</button>
+            </div>
+        </form>
+    </div>
+
+    <div th:replace="fragments/footer :: company">기업설명부분</div>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/itemUpdateForm.js"></script>
+</body>
+</html>

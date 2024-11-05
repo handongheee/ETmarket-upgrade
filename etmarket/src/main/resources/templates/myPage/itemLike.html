@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/dealManage.css">
+    <link rel="stylesheet" type="text/css" href="/css/itemLike.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/dealManage.js"></script>
+    <title>찜목록 | ET마켓</title>
+    <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: menu1}">메뉴1부분</div>
+<div th:replace="~{fragments/header :: menu2}">메뉴2부분</div>
+
+<div class="sc-dTsoBL qMyCA">
+    <div class="sc-btewqU IQTNO">
+        <nav class="sc-hAnkBK bvTSLH">
+            <div class="sc-bJTOcE bwpcVz" onclick="changeColor(this)">
+                <a class="sc-DNdyV ihLswr" th:href="@{/item/like}">찜목록</a>
+            </div>
+            <div class="sc-bJTOcE cxNxJu" onclick="changeColor(this)">
+                <a class="sc-DNdyV ihLswr" th:href="@{/deal/manage}" >상품관리</a>
+            </div>
+            <div class="sc-bJTOcE bwpcVz" onclick="changeColor(this)">
+                <a class="sc-geAPOV fEXFkE" th:href="@{/deal/history}" >거래내역</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="sc-kWHCRG iWvVoD">
+        <main class="sc-AUpyg iPTxLm">
+            <header class="sc-ijnzTp iWlavc">
+                <form class="sc-fUdGnz fUdmwl" style="margin-right: 1rem;" method="GET" action="/deal/manage">
+                    <input type="text" name="keyword" placeholder="상품명을 입력해주세요." value="" />
+                    <button type="submit" class="sc-dzOgQY bXZIiF"></button>
+                </form>
+            </header>
+            <div>
+                <div class="sc-kEmuub dfsUMO">
+                    <div>찜<span class="sc-fHSTwm dLpRgo" th:text="${#lists.size(likedItem)}">0</span></div>
+                </div>
+                <div class="sc-cCbXAZ csJElQ">
+                    <div class="sc-hdPSEv lnBpRH">
+                        <!--<div class="sc-cmIlrE kEasLh">
+                            <div class="sc-fHxwqH foqDNf"></div>
+                            <button class="sc-jvEmr hwayJk">선택삭제</button>
+                        </div>-->
+                        <!--<div class="sc-gleUXh dRITiR">
+                            <a class="sc-doWzTn gdwvHm">최신순</a>
+                            <a class="sc-doWzTn kvYcBO">인기순</a>
+                            <a class="sc-doWzTn kvYcBO">저가순</a>
+                            <a class="sc-doWzTn kvYcBO">고가순</a>
+                        </div>-->
+                    </div>
+                    <div  class="sc-nrwXf ipkdeR" >
+                     <div th:each="item : ${likedItem}" class="sc-eitiEO fOnekV">
+                        <a class="sc-cEvuZC kAXfEi" th:href="@{'/items/'+${item['itemId']}}">
+                            <!--<div class="sc-dvCyap hwfvVn">
+                                <button type="button" class="sc-fHxwqH foqDNf" th:onclick="'deleteItem(' + ${item['itemId']} +  ')'"></button>
+                            </div>-->
+                            <div class="sc-kXeGPI hkOzft">
+                                <img th:src="${item['itemImg']}" alt="상품 이미지" style="width: 138px; height: 138px;">
+                                <div class="sc-iFMziU eyCCxv">배송비포함</div>
+                                <div class="sc-gVLVqr iovqKN"></div>
+                            </div>
+                            <div class="sc-ugnQR huitHV">
+                                <div class="sc-fyjhYU jgwDOt" >
+                                    <div class="sc-eIHaNI deAGaV" th:text="${item['itemTitle']}">상품명</div>
+                                    <div class="sc-dxZgTM ySSXL"><div th:text="${item['itemPrice']}">가격</div></div>
+                                    <div class="sc-eTpRJs gimUQy">1주 전</div>
+                                </div>
+                                <div class="sc-iomxrj dUXZPL">
+                                    <i class="bi bi-geo-alt-fill"></i><p th:text="${item['itemAddress']}">주소</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+                <div class="sc-dBaXSw kVTaan"></div>
+            </div>
+
+        </main>
+    </div>
+    <div th:replace="~{fragments/footer :: company}">기업설명부분</div>
+</div>
+<script>
+    function deleteItem(itemId) {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            $.ajax({
+                url: '/item/like/' + itemId,
+                type: 'DELETE',
+                success: function(result) {
+                    alert("삭제되었습니다.");
+                    location.reload(); // 성공 시 페이지 새로고침
+                },
+                error: function(err) {
+                    alert("요청에 실패했습니다.");
+                }
+            });
+        }
+    }
+    </script>
+</body>
+</html>

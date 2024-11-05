@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <title>채팅방</title>
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .container{
+            width: 600px;
+            margin: 0 auto;
+            padding: 25px
+        }
+        .container h1{
+            text-align: left;
+            padding: 5px 5px 5px 15px;
+            color: #4eb006;
+            border-left: 3px solid #4eb006;
+            margin-bottom: 20px;
+        }
+        .chating{
+            background-color: #000;
+            width: 500px;
+            height: 500px;
+            overflow: auto;
+        }
+        .chating .me{
+            color: #F6F6F6;
+            text-align: right;
+        }
+        .chating .others{
+            color: #4eb006;
+            text-align: left;
+        }
+        input{
+            width: 330px;
+            height: 25px;
+        }
+        #yourMsg{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/header :: menu1">메뉴1부분</div>
+
+<div th:replace="fragments/header :: menu2">메뉴2부분</div>
+
+<div>
+    <h1>채팅방 테스트</h1>
+    <div id="container" class="container">
+        <h1>[[${roomName}]]의 채팅방</h1>
+        <input type="hidden" id="sessionId" value="">
+        <input type="hidden" id="chatroomId" th:value="${chatroomId}">
+
+        <div id="chating" class="chating"></div>
+
+        <div id="yourName">
+            <table class="inputTable">
+                <tr>
+                    <th>사용자명</th>
+                    <th><input type="text" name="userName" id="userName"></th>
+                    <th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+                </tr>
+            </table>
+        </div>
+        <div id="yourMsg">
+            <table class="inputTable">
+                <tr>
+                    <th>메시지</th>
+                    <th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+                    <th><button onclick="send()" id="sendBtn">보내기</button></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: company">기업설명부분</div>
+
+<script th:inline="javascript">
+    var ws;
+
+    function wsOpen(){
+        // 웹소켓 전송 시 현재 방번호 넘김
+        ws = new WebSocket("ws://" + location.host + "/chating/" + $('#chatroomId').val());
+        wsEvt();
+    }
+
+    function wsEvt() {
+        ws.onopen = function(data){
+            //소켓이 열리면 초기화 세팅하기
+            console.log("소켓 open");
+        }
+
+        ws.onmessage = function(data) {
+            var msg = data.data;
+            if(msg != null && msg.trim() !== ''){
+                var json = JSON.parse(msg); // 서버에서 전달된 json 데이터 {"type": , "sessionId": } 이럭게 옴
+                if (json.type === "getId"){ // 서버에서 넘어온 초기 값이면
+                    var ss = json.sessionId !== null ? json.sessionId : "";
+                    if(ss !== ''){
+                        $('#sessionId').val(ss);
+                    }
+                } else if (json.type === "message"){
+                    if(json.sessionId === $("#sessionId").val()){
+                        $("#chating").append("<p class='me'>나 : " + json.msg + "</p>");
+                    }else{
+                        $("#chating").append("<p class='others'>" + json.userName + " : " + json.msg + "</p>");
+                    }
+                }else{
+                    console.warn("unknown type!")
+                }
+            }
+        }
+
+        document.addEventListener("keypress", function(e){
+            if(e.keyCode == 13){ //enter press
+                send();
+            }
+        });
+    }
+
+    function chatName(){
+        var userName = $("#userName").val();
+        if(userName == null || userName.trim() === ""){
+            alert("사용자 이름을 입력해주세요.");
+            $("#userName").focus();
+        }else{
+            wsOpen();
+            $("#yourName").hide();
+            $("#yourMsg").show();
+        }
+    }
+
+    function send() {
+        var option ={
+            type: "message",
+            chatroomId : $("#chatroomId").val(),
+            sessionId : $("#sessionId").val(),
+            userName : $("#userName").val(),
+            msg : $("#chatting").val()
+        }
+        ws.send(JSON.stringify(option))
+        $('#chatting').val("");
+    }
+</script>
+
+</body>
+</html>

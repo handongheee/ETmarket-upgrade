@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/item_detail.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/item_detail.js"></script>
+    <title>Title</title>
+
+
+</head>
+<body>
+<div th:replace="fragments/header :: menu1">메뉴1부분</div>
+
+<div th:replace="fragments/header :: menu2">메뉴2부분</div>
+<div id="main_container">
+
+    <div class="header">
+        <div class="category-header">
+            <a href="#" style="margin-right: 0px">
+                <div class="home-icon-box">
+                    <img src="/image/home_icon.png" width="15" height="15" alt="홈 아이콘">
+                    홈
+                </div>
+            </a>
+            <div class="category-wrapper">
+                <img src="/image/category_select_icon.png" width="6" height="10" alt="카테고리 선택 아이콘">
+                <div class="category-container">
+                    <div class="category-box">
+                        <div class="selected-category">
+                            생활/주방
+                            <img src="/image/category_dropdown.png" width="10" height="6" alt="카테고리 화살표">
+                        </div>
+                        <div class="category-list">
+                            <a href="#" class="category-menu">식품</a>
+                            <a href="#" class="category-menu">패션</a>
+                            <a href="#" class="category-menu">전자기기</a>
+                            <a href="/" class="category-menu">생활/주방</a>
+                            <a href="#" class="category-menu">뷰티/미용</a>
+                            <a href="#" class="category-menu">도서</a>
+                            <a href="#" class="category-menu">티켓/교환권</a>
+                            <a href="#" class="category-menu">기타</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <div class="product-image-wrapper">
+                <div class="product-image-box">
+                    <div class="product-image-list">
+                        <img src="/image/tempimage.png" alt="" class="product-image">
+                        <img src="/image/tempimage.png" alt="" class="product-image">
+                        <img src="/image/logo_up.png" alt="" class="product-image">
+                    </div>
+                    <div class="product-image-temp"></div>
+                    <button direction="prev" class="prev-button">
+                        <img src="/image/prev_icon.png" width="12" height="22" alt="이전 이미지 버튼">
+                    </button>
+                    <button direction="next" class="next-button">
+                        <img src="/image/next_icon.png" width="12" height="22" alt="이전 이미지 버튼">
+                    </button>
+                    <button class="zoom-button">
+                        <img src="/image/zoom_icon.png" width="16" height="16" alt="확대 버튼">
+                        확대
+                    </button>
+                    <div class="image-count-box">
+                    </div>
+
+                    <div id="zoom-image-modal" style="display: none;">
+                        <div class="modal-wrapper"></div>
+                        <button class="exit-modal">&times;</button>
+                        <div class="modal-content-wrapper">
+                            <div class="modal-content">
+                                <div class="modal-header">미즈노 모렐리아 네오3 베타 인 제펜(280)</div>
+                                <div class="modal-body">
+                                    <div class="modal-image-box">
+                                        <img src="" alt="" class="modal-image">
+                                    </div>
+                                </div>
+                                <div class="modal-footer-count-box">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="product-details">
+                <div class="tsc">
+                    <div class="title-container">
+                        <h1 class="product-title">미즈노 모렐리아 네오3 베타 인 제펜(280)</h1>
+                        <div class="product-price">270,000<span>원</span></div>
+                    </div>
+                    <div class="sub-info">
+                        <div class="box-container">
+                            <div class="wish-box">
+                                <img src="/image/wish_icon.png" width="16" height="16" alt="상품 상태 아이콘">
+                                <div class="wish-count">5</div>
+                                <span class="span-border"></span>
+                            </div>
+                            <div class="count-box">
+                                <img src="/image/count_icon.png" width="21" height="13" alt="상품 상태 아이콘">
+                                <div class="view-count">76</div>
+                                <span class="span-border"></span>
+                            </div>
+                            <div class="postdate-box">
+                                <img src="/image/update_icon.png" width="16" height="16" alt="상품 상태 아이콘">
+                                <div class="post-date">4일 전</div>
+                            </div>
+                        </div>
+                        <button class="report-box">
+                            <img src="/image/report_icon.png" width="15" height="15" alt="신고 아이콘">
+                            신고하기
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="status-box">
+                            <div class="info-title">
+                                <span>•</span>
+                                <span>상품상태</span>
+                            </div>
+                            <div class="item-status">
+                                새 상품
+                            </div>
+                        </div>
+                        <div class="delivery-fee-box">
+                            <div class="info-title">
+                                <span>•</span>
+                                <span>배송비</span>
+                            </div>
+                            <div class="delivery-fee">
+                                무료배송
+                            </div>
+                        </div>
+                        <div class="location-box">
+                            <div class="info-title">
+                                <span>•</span>
+                                <span>직거래지역</span>
+                            </div>
+                            <div class="location-info">
+                                서울특별시 노원구 상계6.7동
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="like-box">
+                        <button class="like">
+                            <img src="/image/unwished_icon.png" width="16" height="16" alt="상품 상태 아이콘">
+                            <span>찜</span>
+                            <span>2</span>
+                        </button>
+                    </div>
+                    <button class="chat">
+                        <!--                        <img src="/image/wish_icon.png" width="16" height="16" alt="상품 상태 아이콘">-->
+                        <span>채팅</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="additional-container">
+            <div class="item-info-container">
+                <div class="item-section">
+                    <div class="item-info">
+                        <div class="info-menu-title">상품정보</div>
+                        <div class="item-description">
+                            <div class="description-content">
+                                <p style="width: 663px;">미즈노 모렐리아 네오3 베타 인 제팬 축구화 새 제품 판매합니다! 한번도 신은적 없고 풀박에 축구화쌕도 있고 그냥 새제품입니다! 사이즈는 280이구요 정가 가격은 339,000원인데 270,000원에 판매합니다!! 다른분이 체가기 전에 얼른 사가세요!! 직거래도 가능합니다! 고민은 상품을 놓칠뿐….
+                                </p>
+                            </div>
+                            <div class="item-detail-info">
+                                <div class="info-card">
+                                    <div class="item-info-title"><img src="/image/report_icon.png" width="16" height="18" alt="직거래 아이콘">직거래지역</div>
+                                    <div class="item-info-value">
+                                        <div><span>서울특별시 서대문구 연희동</span></div>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="item-info-title"><img src="/image/report_icon.png" width="16" height="18" alt="카테고리 아이콘">카테고리</div>
+                                    <div class="item-info-value">
+                                        <div class="category-info">
+                                            <a href="#">신발</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="item-info-title"><img src="/image/report_icon.png" width="15" height="18" alt="상품태그 아이콘">상품태그</div>
+                                    <div class="item-info-value">
+                                        <a class="item-tag-link">#축구화</a>
+                                        <a class="item-tag-link">#축구화280</a>
+                                        <a class="item-tag-link">#미즈노축구화</a>
+                                        <a class="item-tag-link">#미즈노모렐리아네오</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="similar-item-container">
+                        <h3>비슷한 새 상품 보기</h3>
+                        <ul class="similar-item-ul">
+                            <li class="similar-item">
+                                <a href="#" class="similar-item-link">
+                                    <img src="/image/logo_up.png" alt="" class="similar-item-img">
+                                    <div class="similar-item-info">
+                                        <span class="similar-item-price">57,800원</span>
+                                        <span class="similar-item-name">미즈노 풋살화 모렐리아 살라 Q1GB230383</span>
+                                        <span class="similar-item-seller">그뭐였지</span>
+                                    </div>
+                                </a>
+
+                            </li>
+                            <li class="similar-item">
+                                <a href="#" class="similar-item-link">
+                                    <img src="/image/logo_up.png" alt="" class="similar-item-img">
+                                    <div class="similar-item-info">
+                                        <span class="similar-item-price">52,500원</span>
+                                        <span class="similar-item-name">[미즈노] 미즈노 풋살화 모렐리아 살라 클럽 TF 블랙골드 Q1GB230382</span>
+                                        <span class="similar-item-seller">상점608514612_1호</span>
+                                    </div>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="side-seller-wrapper">
+                <div class="side-seller-container">
+                    <div class="side-seller-container2">
+                        <div class="info-menu-title">판매자정보</div>
+                        <div class="seller-info">
+                            <div class="seller-profile">
+                                <a href="#" class="seller-profile-image">
+                                    <img src="/image/tempimage.png" width="48" height="48" alt="판매자 프로필 이미지">
+                                </a>
+                                <div class="seller-name">
+                                    <a href="#" class="seller-name-link">이티마켓</a>
+                                    <div class="seller-sub-info">
+                                        <a href="" class="sub-info-link">상품8</a>
+                                        <a href="" class="sub-info-link">거래완료2</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="seller-best-products">
+                                <a href="#" class="seller-product">
+                                    <img src="/image/tempimage.png" width="120" height="96" alt="상품 이미지">
+                                    <div class="seller-price-tag">
+                                        <span class="seller-product-price">139,000</span>
+                                        원
+                                    </div>
+                                    <div class="seller-price-box"></div>
+                                </a>
+                                <a href="#" class="seller-product">
+                                    <img src="/image/tempimage.png" width="120" height="96" alt="상품 이미지">
+                                    <div class="seller-price-tag">
+                                        <span class="seller-product-price">139,000</span>
+                                        원
+                                    </div>
+                                    <div class="seller-price-box"></div>
+                                </a>
+                                <a href="#" class="seller-product">
+                                    <img src="/image/tempimage.png" width="120" height="96" alt="상품 이미지">
+                                    <div class="seller-price-tag">
+                                        <span class="seller-product-price">139,000</span>
+                                        원
+                                    </div>
+                                    <div class="seller-price-box"></div>
+                                </a>
+                                <a href="#" class="seller-product">
+                                    <img src="/image/tempimage.png" width="120" height="96" alt="상품 이미지">
+                                    <div class="seller-price-tag">
+                                        <span class="seller-product-price">139,000</span>
+                                        원
+                                    </div>
+                                    <div class="seller-price-box"></div>
+                                </a>
+                                <a href="#" class="seller-product">
+                                    <img src="/image/tempimage.png" width="120" height="96" alt="상품 이미지">
+                                    <div class="seller-price-tag">
+                                        <span class="seller-product-price">139,000</span>
+                                        원
+                                    </div>
+                                    <div class="seller-price-box"></div>
+                                </a>
+                            </div>
+                            <div class="more-button-wrapper">
+                                <a href="" class="more-button-link">
+                                    상품 더보기 >
+                                </a>
+                            </div>
+                            <div class="seller-review-container">
+                                <div class="seller-review-title">
+                                    상점후기
+                                    <span class="seller-review-count">13</span>
+                                </div>
+                                <div class="seller-review-list">
+                                    <div class="seller-review-box">
+                                        <a href="" class="reviewer-profile-image">
+                                            <img src="/image/tempimage.png" width="32" height="32" alt="리뷰어 프로필 이미지">
+                                        </a>
+                                        <div class="review-info-wrapper">
+                                            <div class="reviewer-name-date">
+                                                <a href="" class="reviewer-name">찰리와초콜릿</a>
+                                                <div class="review-date">7개월 전</div>
+
+                                            </div>
+                                            <div class="reviewer-rating-wrapper">
+                                                <div class="rating-score">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                </div>
+                                            </div>
+                                            <div class="review-content">
+                                                질문에 친절하게 잘 답변해주시고 배송도 원하는시간에 빠르게 보내주셔서 덕분에 잘 받았습니다 ㅎ 다음에 필요한게 올라오면 또 구매하고싶네요
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seller-review-box">
+                                        <a href="" class="reviewer-profile-image">
+                                            <img src="/image/tempimage.png" width="32" height="32" alt="리뷰어 프로필 이미지">
+                                        </a>
+                                        <div class="review-info-wrapper">
+                                            <div class="reviewer-name-date">
+                                                <a href="" class="reviewer-name">찰리와초콜릿</a>
+                                                <div class="review-date">7개월 전</div>
+
+                                            </div>
+                                            <div class="reviewer-rating-wrapper">
+                                                <div class="rating-score">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                                </div>
+                                            </div>
+                                            <div class="review-content">
+                                                질문에 친절하게 잘 답변해주시고 배송도 원하는시간에 빠르게 보내주셔서 덕분에 잘 받았습니다 ㅎ 다음에 필요한게 올라오면 또 구매하고싶네요
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="seller-review-button-wrapper">
+                                    <a href="" class="seller-review-button">상점후기 더보기></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: company">기업설명부분</div>
+</body>
+</html>

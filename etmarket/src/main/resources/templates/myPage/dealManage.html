@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/dealManage.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/dealManage.js"></script>
+    <title>상품관리 | ET마켓</title>
+    <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: menu1}">메뉴1부분</div>
+<div th:replace="~{fragments/header :: menu2}">메뉴2부분</div>
+
+<div class="sc-dTsoBL qMyCA">
+    <div class="sc-btewqU IQTNO">
+        <nav class="sc-hAnkBK bvTSLH">
+            <div class="sc-bJTOcE bwpcVz" onclick="changeColor(this)" data-item-id="uniqueItemId1">
+                <a class="sc-DNdyV ihLswr" th:href="@{/item/like}">찜목록</a>
+            </div>
+            <div class="sc-bJTOcE cxNxJu" onclick="changeColor(this)" data-item-id="uniqueItemId2">
+                <a class="sc-DNdyV ihLswr" th:href="@{/deal/manage}" >상품관리</a>
+            </div>
+            <div class="sc-bJTOcE bwpcVz" onclick="changeColor(this)" data-item-id="uniqueItemId3">
+                <a class="sc-geAPOV fEXFkE" th:href="@{/deal/history}" >거래내역</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="sc-kWHCRG iWvVoD">
+        <main class="sc-AUpyg iPTxLm">
+            <header class="sc-ijnzTp iWlavc">
+                <form class="sc-fUdGnz fUdmwl" style="margin-right: 1rem;" method="GET" action="/deal/manage">
+                    <input type="text" name="keyword" placeholder="상품명을 입력해주세요." value="" />
+                    <input type="hidden" name="dealStatus" th:value="${dealStatus}" />
+                    <input type="hidden" name="itemHidden" th:value="${itemHidden}" />
+                    <button type="submit" class="sc-dzOgQY bXZIiF"></button>
+                </form>
+                <!--<div class="sc-jOBXIr gbcRtW">
+                    <div class="css-2b097c-container">
+                        <div class="sc-jOVcOr hWDzUk">
+                            <div class="css-1hwfws3">
+                                <div class="css-1uccc91-singleValue">10개씩</div>
+                                <input id="react-select-13-input" readonly tabindex="0" aria-autocomplete="list" class="css-62g3xt-dummyInput" value="">
+                            </div>
+                            <div class="sc-gCwZxT byUzHg"></div>
+                        </div>
+                    </div>
+                </div>-->
+                <div style="display: flex; align-items: center; margin-left: auto;">
+                    <div id="select-3">
+                        <div id="option-list-3" style="display: flex; column-gap: 24px;">
+                            <a class="item_status  status"  th:href="@{/deal/manage}">전체</a>
+                            <a class="item_status status" th:classappend="${dealStatus == '판매중' ? 'selected' : ''}" th:href="@{/deal/manage(dealStatus='판매중')}">판매중</a>
+                            <a class="item_status status" th:classappend="${dealStatus == '예약중' ? 'selected' : ''}" th:href="@{/deal/manage(dealStatus='예약중')}">예약중</a>
+                            <a class="item_status status" th:classappend="${dealStatus == '거래완료' ? 'selected' : ''}" th:href="@{/deal/manage(dealStatus='거래완료')}">거래완료</a>
+                        </div>
+                    </div>
+                    <div style="width: 1px; height: 16px; margin-left: 20px; margin-right: 20px; background-color: rgb(204, 204, 204);"></div>
+                    <div id="select-4">
+                        <div id="option-list-4" style="display: flex; align-items: center; column-gap: 24px;">
+                            <a class="status"  data-selected="false" style="font-weight: 500; line-height: normal; cursor: pointer; color: rgb(127, 127, 127);"
+                               th:href="@{/deal/manage(hidden=${'숨김'})}">숨김</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="sc-38383725-1 TZQfU">
+                <div class="sc-20ef24f2-0 jwboJy">
+                    <div th:each="dto, dtoIndex : ${list}">
+                        <div th:if="${dto.itemHidden != '숨김'}" >
+                        <article class="sc-cd837f27-0 cpZssi">
+                            <hr class="sc-kAyceB cdAyDo bun-ui-divider">
+                            <section class="sc-cd837f27-2 gyvxQm">
+                                <section class="sc-cd837f27-7 DJdJS">
+                                    <!-- dtoIndex.index를 사용하여 itemImgList에서 해당 상품의 이미지를 가져옴 -->
+                                    <div th:if="${dtoIndex != null}">
+                                        <div th:if="${dtoIndex.index >= 0 and dtoIndex.index < #lists.size(itemImgList) and itemImgList[dtoIndex.index]?.itemImg != null}">
+                                        <img th:src="${itemImgList[dtoIndex.index].itemImg}" alt="상품 사진" loading="lazy">
+                                        </div>
+                                        <div th:if="${dtoIndex.index < 0 or dtoIndex.index >= #lists.size(itemImgList) or itemImgList[dtoIndex.index].itemImg == null}">
+                                            <i class="bi bi-card-image"></i>
+                                        </div>
+                                    </div>
+                                    <div th:if="${dtoIndex == null}">
+                                        <i class="bi bi-card-image"></i>
+                                    </div>
+                                    <section style="margin-left: 60px; margin-top:15px;">
+                                        <!--삭제버튼-->
+                                       <div class="delete-space">
+                                           <a th:href="@{'/item/delete?itemId='+${dto.itemId}}">
+                                               <i class="bi bi-x-lg close-button"></i>
+                                           </a>
+                                        </div>
+                                        <div class="title-container">
+                                        <header class="sc-cd837f27-4 hmyVuO" th:text="${dto.itemTitle}" th:href="@{'/items/'+${dto.itemId}}">상품 제목</header>
+                                        </div>
+                                        <div class="sc-cd837f27-5 bxbsbo">
+                                            <p class="sc-cd837f27-5 bxb" th:if="${dto.itemAddress == null or #strings.listSplit(dto.itemAddress, ' ').size() == 0}" th:text="'지역정보 없음'"></p>
+                                            <p class="sc-cd837f27-5 bxb" th:if="${dto.itemAddress != null and #strings.listSplit(dto.itemAddress, ' ').size() >= 1}"
+                                               th:text="${#strings.listSplit(dto.itemAddress, ' ').get(0)} + ' ' + ${#strings.listSplit(dto.itemAddress, ' ').get(1)} + ' · '"></p>
+
+                                            <p class="sc-cd837f27-5 itemResistDate"  th:text="${dto.itemUpdateDate}">상품 등록 시간</p>
+                                            <p class="itemUpCount" th:data-itemid="${dto.itemId}">끌어올리기 횟수</p>
+                                        </div>
+
+                                        <div class="item-info">
+                                            <div class="status-button-container" th:data-itemid="${dto.itemId}">
+                                                <button class="status-button" style="display: none;"></button>
+                                            </div>
+                                            <p class="item-price" th:text="${#numbers.formatInteger(dto.itemPrice, 3, 'COMMA') + '원'}">상품 가격</p>
+                                        </div>
+
+                                        <div style="display: flex; align-items: center;">
+                                            <th:block th:if="${chatRoomsByItemId[dto.itemId] != null and chatRoomsByItemId[dto.itemId] > 0}">
+                                            <i class="bi bi-chat chat_count" th:text="${chatRoomsByItemId[dto.itemId]}" >채팅방 개수</i>
+                                        </th:block>
+
+                                        <th:block th:if="${likesByItemId[dto.itemId] != null and likesByItemId[dto.itemId] > 0}">
+                                            <i class="bi bi-heart likes" th:text="${likesByItemId[dto.itemId]}" >찜 개수</i>
+                                        </th:block>
+                                        </div>
+                                    </section>
+                                    <section>
+
+                                    <div class="css-2b097c-container">
+                                        <div class="dropdown">
+                                            <select class="dropdown-select" th:id="'dropdown-' + ${dto.itemId}" th:data-itemid="${dto.itemId}" onchange="updateItemStatus(this)">
+                                                <option value="판매중" th:selected="${#strings.equals(dto.dealStatus.name(), '판매중')}">판매중</option>
+                                                <option value="예약중" th:selected="${#strings.equals(dto.dealStatus.name(), '예약중')}">예약중</option>
+                                                <option value="거래완료" th:selected="${#strings.equals(dto.dealStatus.name(), '거래완료')}">거래완료</option>
+                                            </select>
+
+                                            <i id="arrow-icon" class="bi bi-chevron-down"></i>
+                                        </div>
+
+                                        <div class="sc-gCwZxT byUzHg"></div>
+                                    </div>
+
+
+                                    </section>
+                                </section>
+                            </section>
+
+
+                            <!-- 거래완료 모달 창 -->
+                            <div class="modal buyer-modal">
+                                <div class="modal-content">
+                                    <span class="close" onclick="closeModal()">&times;</span>
+                                    <h2>구매자를 선택해주세요</h2>
+                                    <ul class="buyer-list">
+                                        <!-- 채팅 참여 유저 리스트가 여기에 추가됨 -->
+                                    </ul>
+                                    <button onclick="confirmBuyer()">확인</button>
+                                </div>
+                            </div>
+
+
+                            <footer class="sc-cd837f27-3 bjPSeA transaction-card-footer">
+                                <button type="button" class="sc-gEvEer upButton bun-ui-button" style="margin-bottom: 0.5rem;"
+                                        th:data-itemid="${dto.itemId}" th:data-userid="${userId}">끌어올리기</button>
+
+                                <!--수정버튼-->
+                                <button class="sc-gEvEer fbpoRr bun-ui-button" style="color: rgb(2, 122, 255); margin-bottom: 0.5rem;">
+                                    <a th:href="@{'/item/updateForm?itemId='+${dto.itemId}}">게시글 수정</a>
+                                </button>
+                                <button class="sc-gEvEer hideButton bun-ui-button"
+                                        th:data-itemid="${dto.itemId}"
+                                        th:data-status="${dto.itemHidden == '숨김' ? '숨김' : '보임'}"
+                                        th:text="${dto.itemHidden == '숨김' ? '숨기기 해제' : '숨기기'}"
+                                        onclick="toggleHiddenStatus(this, [[${dto.itemId}]], '[[${dto.itemHidden}]]')">숨기기</button>
+
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="sc-SFOxd jqAsZn">
+            <div class="pagination-container">
+                <a class="pagination-arrow" th:if="${nowPage > 1}"
+                   th:href="@{/deal/manage(page=${nowPage - 1}, dealStatus=${dealStatus}, keyword=${keyword})}">
+                    <i class="bi bi-chevron-left"></i>
+                </a>
+                <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                    <a class="pagination-link" th:if="${page != nowPage}"
+                       th:href="@{/deal/manage(page=${page - 1}, dealStatus=${dealStatus}, keyword=${keyword})}"
+                       th:text="${page}"></a>
+                    <strong class="pagination-current" th:if="${page == nowPage}" th:text="${page}"></strong>
+                </th:block>
+                <a class="pagination-arrow"
+                   th:href="@{/deal/manage(page=${nowPage + 1}, dealStatus=${dealStatus}, keyword=${keyword})}">
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </div>
+
+
+            <!--<div class="pagination-container">
+                &lt;!&ndash; 이전 페이지 링크 &ndash;&gt;
+                <a class="pagination-arrow" th:if="${nowPage > 1}"
+                   th:href="@{'/deal/manage?page=' + (${nowPage - 1}) +
+       (${dealStatus != null} ? '&dealStatus=' + dealStatus.name() : '') +
+       (${keyword != null} ? '&keyword=' + keyword : '')}">
+                    <i class="bi bi-chevron-left"></i>
+                </a>
+
+                &lt;!&ndash; 페이지 링크 목록 &ndash;&gt;
+                <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                    <a class="pagination-link" th:if="${page != nowPage}"
+                       th:href="@{'/deal/manage?page=' + page +
+           (${dealStatus != null} ? '&dealStatus=' + dealStatus.name() : '') +
+           (${keyword != null} ? '&keyword=' + keyword : '')}"
+                       th:text="${page}"></a>
+                    <strong class="pagination-current" th:if="${page == nowPage}" th:text="${page}"></strong>
+                </th:block>
+
+                &lt;!&ndash; 다음 페이지 링크 &ndash;&gt;
+                <a class="pagination-arrow" th:if="${nowPage < endPage}"
+                   th:href="@{'/deal/manage?page=' + (${nowPage + 1}) +
+       (${dealStatus != null} ? '&dealStatus=' + dealStatus.name() : '') +
+       (${keyword != null} ? '&keyword=' + keyword : '')}">
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </div>-->
+
+
+
+
+
+
+
+
+        </footer>
+    </div>
+    <div th:replace="~{fragments/footer :: company}">기업설명부분</div>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

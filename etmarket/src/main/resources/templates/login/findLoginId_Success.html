@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="/js/menu.js"></script>
+<title>ET마켓</title>
+<link rel="icon" href="image/favicon.ico" type="image/x-icon">
+<style type="text/css">
+    .loginsub{
+        font-size: 10pt !important;
+        color: gray;
+    }
+
+	.logininput{
+	    width:300px;
+	    height: 38px;
+	    border: 0.7px solid #ddd;
+	    border-radius: 5px;    
+	    margin-top: 3px;
+	    text-indent: 6px;
+	}
+	
+	#btnLogin{
+	    background-color: #4eb006;
+	    margin-top:50px; 
+	    width:300px; 
+	    height: 45px;
+	    color: white;
+	    border-radius: 5px;
+	    font-size: 11pt !important;
+	}
+</style>
+</head>
+<body>
+<div th:replace="fragments/header :: menu1">메뉴1부분</div>
+<div th:replace="fragments/header :: menu2">메뉴2부분</div>
+<div align="center" style="margin: 70px 0px 150px 0px;">
+
+	<form action="/member/find/loginIdProcess" method="post">
+		<table style="width: 300px;">
+			<tr>
+				<td style="float: left; margin-bottom: 30px;">
+					<h1>아이디 찾기</h1> 
+					<font class="loginsub">
+						회원님의 정보와 일치하는 아이디입니다.
+					</font>
+				</td>
+			</tr>
+	
+			<tr>
+				<td>
+					<font class="loginsub">아이디</font> <br>
+					<font style="font-size: 13pt;">[[${loginId.userLoginId}]]</font> <br>
+					
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<font class="loginsub">가입일</font> <br>
+					<div style="font-size: 13pt;" th:text="${#dates.format(loginId.userCreateDate, 'yyyy-MM-dd')}"/>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<button type="button" id="btnLogin" onclick="location.href='/login'">로그인 하기</button>
+				</td>
+			</tr>
+
+		</table>
+	</form>
+</div>
+
+<div th:replace="fragments/footer :: company">기업설명부분</div>
+</body>
+</html>

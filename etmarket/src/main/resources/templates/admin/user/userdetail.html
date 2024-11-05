@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/layout/layout :: head('회원 상세정보')">
+    <style>
+        .img-account-profile {
+            height: 10rem;
+            max-width: 100%; /* 이미지가 부모의 너비를 초과하지 않도록 설정 */
+        }
+
+        .gx-3 {
+            --bs-gutter-x: 1rem;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        th:replace="admin/layout/layout :: sidebar('userdetail')">
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+                 th:replace="admin/layout/layout :: topbar">
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">회원 상세정보</h1>
+
+                <!-- User Detail Card -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">회원 정보</h6>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/admin/userupdate}" method="post">
+                            <input type="hidden" name="userId" th:value="${user.userId}">
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="card mb-4 mb-xl-0">
+                                        <div class="card-header">Profile Picture</div>
+                                        <div class="card-body text-center">
+                                            <img class="img-account-profile rounded-circle img-fluid mb-2"
+                                                 th:src="${user.userImg != 'NoImage' ? user.userImg : '/image/basic_profile_image.png'}"
+                                                 alt="프로필 사진">
+                                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5
+                                                MB
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="userImg" class="btn btn-primary">
+                                                    <span>Upload new image</span>
+                                                    <input type="file" class="form-control-file" id="userImg" name="userImg" hidden>
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8">
+                                    <div class="card mb-4">
+                                        <div class="card-header">Account Details</div>
+                                        <div class="card-body">
+                                            <div class="row gx-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="small mb1" for="userLoginId">아이디</label>
+                                                    <input type="text" class="form-control" id="userLoginId"
+                                                           name="userLoginId" th:value="${user.userLoginId}">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="small mb1" for="userPassword">비밀번호</label>
+                                                    <input type="text" class="form-control" id="userPassword"
+                                                           name="userPassword" th:value="${user.userPassword}">
+                                                </div>
+                                            </div>
+                                            <div class="row gx-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="small mb1" for="userName">닉네임</label>
+                                                    <input type="text" class="form-control" id="userName" name="userName" th:value="${user.userName}">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="small mb1" for="userEmail">이메일</label>
+                                                    <input type="email" class="form-control" id="userEmail" name="userEmail" th:value="${user.userEmail}">
+                                                </div>
+                                            </div>
+                                            <div class="row gx-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="small mb1" for="userPhone">휴대폰 번호</label>
+                                                    <input type="text" class="form-control" id="userPhone" name="userPhone" th:value="${user.userPhone}">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="small mb1" for="userJoinType">가입 수단</label>
+                                                    <input type="text" class="form-control" id="userJoinType" name="userJoinType" th:value="${user.userJoinType}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="small mb1" for="userCreateDate">계정 생성 시간</label>
+                                                <input type="text" class="form-control" id="userCreateDate" name="userCreateDate" th:value="${#dates.format(user.userCreateDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="userStatus">활성 상태</label>
+                                                <select class="form-control" id="userStatus" name="userStatus">
+                                                    <option value="ACTIVE" th:selected="${user.userStatus.name()} == 'ACTIVE'">활성</option>
+                                                    <option value="DELETE" th:selected="${user.userStatus.name()} == 'DELETE'">탈퇴</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">수정</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white" th:replace="admin/layout/layout :: footer">
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Include common elements and scripts -->
+<th:block th:replace="admin/layout/layout :: commonElementsAndScripts"></th:block>
+<script>
+    function editItem(itemId) {
+        // 유저 수정 로직을 여기에 추가하세요.
+        //alert("수정하기: " + itemId);
+        window.location.href = '/admin/itemdetail/' + itemId;
+    }
+
+    function deleteItem(itemId) {
+        // 유저 삭제 로직을 여기에 추가하세요.
+        alert("삭제하기: " + itemId);
+    }
+</script>
+</body>
+
+</html>

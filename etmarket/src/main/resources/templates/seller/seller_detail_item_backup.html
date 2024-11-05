@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/seller_detail_item.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+
+    <title>Title</title>
+
+
+
+</head>
+<body>
+<div th:replace="fragments/header :: menu1">메뉴1부분</div>
+
+<div th:replace="fragments/header :: menu2">메뉴2부분</div>
+
+<div class="store-wrapper">
+    <div class="profile-container">
+        <div class="profile-details">
+            <div class="profile-image-section">
+                <div class="profile-image-wrapper">
+                    <div class="profile-image-box">
+                        <div class="profile-image-inner">
+                            <div class="profile-image-content">
+                                <div class="profile-image-before">::before</div>
+                            </div>
+                            <div class="profile-info">
+                                <img class="profile-image" src="/image/basic_profile_image.png" width="100" height="100" alt="판매자 프로필 사진">
+                                <div class="rating-container"></div>
+                                <div class="rating-stars">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                    <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+
+                                </div>
+                                <div class="profile-links-box">
+                                    <a href="" class="profile-link">
+                                        상품
+                                        <b>32</b>
+                                    </a>
+                                    <a href="" class="profile-link">
+                                        거래완료
+                                        <b>33</b>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-info-container">
+                    <div class="profile-info-box">
+                        <div class="seller-name">Seller Nickname</div>
+                    </div>
+                    <div class="seller-detail-box">
+                        <div class="seller-detail">
+                            <img src="/image/shop_open.png" width="14" height="13" alt="상점 오픈 아이콘">
+                            판매시작일
+                            <div class="days-ago">224 일 전</div>
+                        </div>
+                        <div class="seller-detail">
+                            <img src="/image/sell_icon.png" width="14" height="13" alt="상품판매 아이콘">
+                            상품판매
+                            <div class="sold-count">123 회</div>
+                        </div>
+                    </div>
+                    <div class="store-description">
+                        지금 페이지는 상점 소개글 입니다. 안녕하세요 gpt 5입니다. 잘부탁 드립니다 hello this page is seller introduction description. im genius gpt5. thank you very
+                    </div>
+                    <div class="report-store">
+                        <a href="" class="report-link">
+                            <img src="/image/report_icon.png" width="14" height="14" alt="신고하기 아이콘">
+                            신고하기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-section">
+                <div class="nav-link-list">
+                    <a href="/seller/item" class="product-tab">
+                        상품
+                        <span class="product-count">32</span>
+                    </a>
+                    <a href="/seller/review" class="review-tab">
+                        후기
+                        <span class="review-count">13</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-content-box">
+                <div class="nav-content">
+                    <div class="product-category-section">
+                        <div class="category-header">
+                            상품
+                            <span class="category-count">32</span>
+                        </div>
+                        <div class="category-dropdown-box">
+                            <div class="category-dropdown">
+                                <div class="dropdown-title">
+                                    전체
+                                    <img src="/image/category_dropdown.png" width="10" height="6" alt="카테고리 선택 아이콘">
+                                </div>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-category">식품</a>
+                                    <a href="#" class="dropdown-category">패션</a>
+                                    <a href="#" class="dropdown-category">전자기기</a>
+                                    <a href="/" class="dropdown-category">생활/주방</a>
+                                    <a href="#" class="dropdown-category">뷰티/미용</a>
+                                    <a href="#" class="dropdown-category">도서</a>
+                                    <a href="#" class="dropdown-category">티켓/교환권</a>
+                                    <a href="#" class="dropdown-category">기타</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-sort-section">
+                        <div class="sort-option-list">
+                            <div class="sort-option">
+                                <div class="total-box">
+                                    <div>전체</div>
+                                    <div class="total-count-box">
+                                        <div class="total-count">32개</div>
+                                    </div>
+                                </div>
+                                <div class="sort-link-list">
+                                    <a href="" class="sort-link">
+                                        최신순
+                                    </a>
+                                    <a href="" class="sort-link">
+                                        인기순
+                                    </a>
+                                    <a href="" class="sort-link">저가순</a>
+                                    <a href="" class="sort-link">고가순</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-list-section">
+                            <div class="product-list">
+                                <a data-pid="2333111" href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-list">
+                                <a href="" class="product-item">
+                                    <div class="product-image-wrapper">
+                                        <img src="/image/tempimage.png" width="194" height="194" alt="상품 이미지">
+                                        <div class="shipping-info">
+                                            <div class="shipping-included">배송비포함</div>
+                                        </div>
+                                        <div class="product-info-temp"></div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-title">150 노스페이스 패딩</div>
+                                        <div class="product-price-box">
+                                            <div class="product-price">124,800</div>
+                                            <div class="time-posted"><span>18시간 전</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-location">
+                                        <img src="/image/location_icon.png" width="15" height="17" alt="위치아이콘">
+                                        서울특별시 관악구 신사동
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="load-more">
+                            <button class="load-more-button">
+                                <div class="load-more-title">상품 더보기</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-section">
+                    <div class="review-container">
+                        <div class="review-header">
+                            상점후기
+                            <span class="review-count-zero">0</span>
+                        </div>
+                    </div>
+                    <div class="review-body">상점후기가 없습니다.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: company">기업설명부분</div>
+</body>
+</html>

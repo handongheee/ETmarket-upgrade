@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/header.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<!--최상단부 즐겨찾기/로그인-->
+<div class="gezxLR" th:fragment="menu1">
+    <div class="bTfWtu">
+        <div>
+            <button class="dDTfxq">
+                <i class="bi bi-star-fill" style="color: rgb(233 180 87);"></i>즐겨찾기
+            </button>
+        </div>
+       
+       <!-- 로그인 시 로그아웃 버튼 출력, 비로그인 시 로그인 버튼 출력 -->
+        <div th:if="${session.loginok == null}">
+            <button class="dDTfxq" onclick="location.href='/login'">로그인</button>
+        </div>
+        <div th:if="${session.loginok != null}">
+        	<button class="dDTfxq" onclick="location.href='/logout'">로그아웃</button>
+        </div>
+    </div>
+</div>
+
+<!--로고/검색창/판매하기/내상점/채팅/카테고리메뉴-->
+<div class="fxYqEy" th:fragment="menu2">
+    <div class="ciqSeg">
+        <div class="kPWKwK">
+            <!--로고-->
+            <a class="bNjUuQ" href="/">
+                <img alt="ET 로고" src="/image/logo_up.png" width="136" height="40">
+            </a>
+            <!--검색창-->
+            <div class="keyjxL">
+                <div class="voMyM">
+                    <input type="text" placeholder="상품명" class="cLfdog" id="searchInput" autocomplete="off">
+                    <a><i class="bi bi-search" style="cursor: pointer;" id="searchButton"></i></a>
+                </div>
+                <!--검책창>최근검색어/인기검색어-->
+                <div class="eLTnVY">
+                    <div class="itpniM">
+                        <div class="ciUXLo">
+                            <a class="drHLIP">최근검색어</a>
+                            <a class="kFQETw">인기검색어</a>
+                        </div>
+                        <div class="hrnQvW">
+                            <!--최근검색어-->
+                            <div class="bjRZEU">
+                                <div class="aVCiY">
+                                    <div class="bCNTNM">
+                                        <div class="fcMDtU">
+                                            <button type="button">ddd</button>
+                                            <button type="button" class="gUWbGN">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="elSlBk">
+                                        <i class="bi bi-file-earmark-excel"></i>
+                                        <div>최근 검색어가 없습니다.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--인기검색어-->
+                            <div class="cyJDDk">
+                                <div class="fotdmu">
+                                    <div class="jGugdc">
+                                        <a class="blDWNR">
+                                            <span class="iLGrCE">1</span>
+                                            크루심125
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--의미불명-->
+                    <div class="gMLmJs">
+                        <div class="gTRpPy">
+                            <div class="ijDrhz"></div>
+                            <a class="etqSPq">
+                                <i class="bi bi-shop"></i>상점검색 &gt;
+                                <span class="ipaMvp"></span>
+                                <span class="hqmWcJ">상점명으로 검색</span>
+                            </a>
+                        </div>
+                        <div class="gHFnNA"></div>
+                    </div>
+                    <!--닫기/검색어 전체삭제-->
+                    <div class="bNSExK">
+                        <a class="iotYfC">닫기</a>
+                        <a class="bprumR" onclick="deleteAllContent()">
+                            <i class="bi bi-trash"></i>검색어 전체삭제
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--채팅/내상점/판매하기-->
+            <div class="eqbkiv">
+                <div th:if="${session.myUserName != null}">
+                    <button class="foChwP" th:onclick="|location.href='@{/et/chat(userName=${session.myUserName})}'|">
+                        <i class="bi bi-chat-right-dots"></i>채팅
+                    </button>
+                </div>
+                <div th:if="${session.myUserName == null}">
+                    <button class="foChwP" th:onclick="|location.href='@{/login}'|">
+                        <i class="bi bi-chat-right-dots"></i>채팅
+                    </button>
+                </div>
+
+                <a class="BltZS" id="myStoreLink">
+                    <i class="bi bi-person"></i>내상점
+                </a>
+                <a class="BltZS" href="item/insertForm">
+                    <i class="bi bi-currency-dollar"></i>판매하기
+                </a>
+            </div>
+        </div>
+        <!--카테고리메뉴-->
+        <div class="gwGdGE">
+            <div class="gIJOQQ">
+                <i class="bi bi-list" style="font-size: 2em; cursor: pointer;"></i>
+                <div class="vertical-menu">
+                    <a th:href="@{/search/category(category='식품')}">식품</a>
+                    <a th:href="@{/search/category(category='패션')}">패션</a>
+                    <a th:href="@{/search/category(category='전자기기')}">전자기기</a>
+                    <a th:href="@{/search/category(category='생활주방')}">생활/주방</a>
+                    <a th:href="@{/search/category(category='뷰티미용')}">뷰티/미용</a>
+                    <a th:href="@{/search/category(category='도서')}">도서</a>
+                    <a th:href="@{/search/category(category='티켓교환권')}">티켓/교환권</a>
+                    <a th:href="@{/search/category(category='기타')}">기타</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

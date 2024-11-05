@@ -1,0 +1,64 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.6'
+	id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'kr.co.sist'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// JSON libraries
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+
+  // 이메일 인증 - redis
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+	// WebSocket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket' //socket
+	implementation 'org.webjars:sockjs-client:1.1.2' //sockJS
+	implementation 'org.webjars:stomp-websocket:2.3.3-1' //stomp
+
+	// Validation 사용 안할 예정
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	
+	// Spring Security, OAuth2.0
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+  
+	// 문자 인증 CoolSMS
+	implementation 'net.nurigo:sdk:4.3.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

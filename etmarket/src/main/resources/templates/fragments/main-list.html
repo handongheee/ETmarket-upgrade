@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<!--        <link rel="stylesheet" type="text/css" href="/css/main_list.css">-->
+    <title>메인 list</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<!-- 메인 화면 -->
+<div id="non-selected" th:fragment="main-list">
+    <div class="sc-giadOv fanqbi">
+        <div class="kind_wrap">
+            <div class="kind_slider">
+                <div><img src="/image/img_2.png" alt=""></div>
+                <div><img src="/image/img_4.png" alt=""></div>
+                <div><img src="/image/img_7.png" alt=""></div>
+                <div><img src="/image/img_8.png" alt=""></div>
+                <div><img src="/image/img_5.png" alt=""></div>
+                <div><img src="/image/img_6.png" alt=""></div>
+                <div><img src="/image/img_3.png" alt=""></div>
+            </div>
+            <div class="arrow">
+                <a href="" class="prev"><i class="bi bi-chevron-compact-left"></i></a>
+                <a href="" class="next"><i class="bi bi-chevron-compact-right"></i></a>
+            </div>
+        </div>
+        <div class="sc-fzsDOv cdQPxm"><img alt="앱 다운로드 QR코드를 포함한 배너 이미지 "
+                                           class="sc-gPWkxV kqLILu" src="/image/img.png">
+            <div class="sc-jVODtj ecgMIs"><img
+                    alt="번개장터 앱 QR코드"
+                    class="sc-kUaPvJ ewWDsE" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAYAAAB1PADUAAAAAXNSR0IArs4c6QAACplJREFUeF7t3d1ynEoMBGD8/g/tU7kLkOJLl2Z2vTntW83op9WSBgzs13Ec38cL/76/n819fX1F3qT6puuv/qX6rsGl+7X+qj/FMwL/D4t/Za+E+g0YEUbyNKEiSGovtT8l0M1eCXWGRAmUPE1oCTWkdAqgzKX6putLqOeM3EaeAFeCVaFX/UqQzgDS9+ozSxq/1sv/FL/d+S2hLhlTglYXVAkVIqoEpfK0YrVeCZ1WtOKTffkv/ZKH6bwtv+pvh2qHGnEqJpTOMLsrSPbTDqKKTeVp/On66RlxGk/qLzuUEpoaFECSy57KLQV46o/wk37JhUcar/CTPyXU5c79NAECfDcBZF/yEgr/ytGhVwBLnhIkXb/afqov9ffjOlR6ZlLFTUeSAN9NaOEx7biK7+MP5QJQBFKCUwC1XvbUMVL51J7wkz/tUHi6QQCWUOenQ0qoEkpN6SRXgf14QqmF7+4Qq/UrnnSkp2ckEULs0v4SCrcNSqgzAiXUhRFpRZdQJdRj1y6hzg/o6raJCiq+baCZKnmaQLXU6RlD/qYAyt9Un/yTvVQue5KXUELoIk8TpIqXPrmn/alc9iQvoYRQCRUhVEJFcB1HWvHtUG9+jWr3Gav6s/ccw3q7LX/7e3lN+Dnh046o/VPCaH8JdfnXixLy6XIRYiovoUqoKYdO+7++0xs7S83flelQu9q8wp/6M9Wvjqj7XKvxkr4SavHHO9IEi7AllCgMuQAeqr9tn3YQ+TPVX0IJ4RLqfOZ48fNYw/RwO0eeLuuvFt7dYWRfFT/tKLtHnjKqfAkf6Vd8JRSu8qYFMyWo9ss/FVBKoBLqgoAAVgLTCp/q0/4SaloSIUFYUe1Qo4zcClRfsFNFK2HydnXFpxWr9fJfcnUYxa/9sj+NT/b5tIEIshoA6ZM/AlSH1Cngsp8mZBqv/FmNdwm1+UZmSgglWIQUgaYFI/slVAkVcXA7oXYzXvp1ppvKI7T/sFj20w42xUPxpIRRfHzaIDU4DWAKoAKWXP5LnuoXvlM8Un+n9kqo8Jcb0gStPiPpIkP20g6Z2iuhSqjHGokJ9ernoeSgOkAqlz1VtEbSu/VP8dB+jfCbvIR6foi/hHp+07iEevHHMXZ3QHUYHbK1vx3qgtC7R9L/nlBpAtKRoKuMaQJUkVN/pxWt+KU/xSddL/uS356HKqFmL0ZqRJRQ4Xe81SEE6OqKUoGk/qpCS6gLAkqA5GmCXp2AjrxzhoSHCuiWb902UMeQwSlhUvsCSPrS/VqvAhM+U3man6m/8TPlcnD1SBMBZE8ATfeXUJfPSrdDZSMgHfki9LQDab8agApC8d6ehyqhSqgn0o0JJQVi/LQipX93RU79n1a84p/mJz1C6EjADjV1eJoQAVpCPX9PSviVUBeESqgS6kSJ1YRIK04jadphpX86AVbvV0eLR57ey5NBEWQqT+1rvRIigoowqX0lTPokV7xpAWk9n9iUw1PCaH9qX+sFcAmVjdTbobwdKvupinaoc8mWUOE3NVePpN0dUCNJBaEOLv3jf72sdlAOa0RO5RqZilf704RN9b2cwNM75QJ4CqD2r5YrgYpX++Wv9k8LbnXHvflTQmUP1JVQz5TvyAvfyyuhQKjrVd70DJICns74dGRIv0aM4pE/U7lGnEaY4l8dX/ybwynhlLA0YCUoTYD8Ww34FL8pXiKg8JP/JRQYVUJlP25UQpVQjwhoIsSPr+weCdKfyqcjQS19tVzxKZ50hKX20g7N9/LkQGpQ62VPciVgNSHSCk7jVzwlFD5JKMJIrgSUULjsH35mux0q/N/eakJOC+THdaj0PtQ0AHWQVP+rR85PG1lp/CJwGt/tNkMJtXYE6D7O6oSWUIv/1ZECmlag9IsgqzuyCKuRLH9TfNqhwouCEkoUPMvjfw6rAiTXGUkVPdWvCs/gO46pPyJsKpf/6kBTeyVUOIJ3F4QIKnkJNfzmZdrR2qHOz9ALj5TA7VDtUCdObR95aqGrGZ7am54JZE8dUPvln/bLftpB0pEt/Te5HgFWwCXUM0IlVMqgy/ppy0zNK2HyR/bUIbRf/mm/7KuDSL/2x/J2qGfIldA0YVqvjp+OLNmLCaP/fV4JNQUwDUDr0w6T+p92EPmzWi58VstFMNkbP20gA6oo7VeC0ore7Y/8TeXCZ7W8hMIZToC3Q50RKqFKKNVMJB8TSo+vRN4cx6GWno4oBSh56r9G4jQ++Sv51L/U/xQ/vvUSKxw+QroasNT/qX0VjAgj+dS/Eir8rZn0Kk+EU4J1BlMCU3kJheePRIA0odInAk0T1g51HKd/P08rToCmCZuuF4Gm8aYdJrW3O/4UHxVsfIYSgCVU9hu9u/ESYSTXhLj5n17llVAZYd6NlwgjeQklhC7ydAQJ4FT+z3Uo/XNYFSa5AFMCxI8pIaRfZ4b0jCN/V+O12p782/7EphwooZ4prYIV4Uuo8JFcAaaEtEOdEUjxuq5vhwKj1AE68i6/6Dn9JYUUUHUEdZx0hGp96o8qeCqXv9MjQhqv1t86VAn1DJkSuFpeQuEyfDoy0gpRh5v6M+1A2l9ClVAnBEQYyT+eULoPlXaI9EylkZHqk7+pPdkXAdL98j/tsNKX4qH1vMqTQwpQDkiuhMj+7v0l1OUqrx1q7W+9iOA6400LWPunBaYG0A61+UaqEpgSQIRN9Ykg8j++bSCDqrj0ECpAdutLAUzxebX/wjOVM9+6D5UCpjOFHFKAr05IGr/8k1zxC990f7pe+eOPWKeAKmA5pABfnZA0fvknueIXvun+dL3yV0LhDFVCnSlHQk2v8lKGq8LksOzp0DoliOxLrvhW+y9/UnvK3/gqTw5L/uoRUEKdM1JCgaEpQCK09KlgdNWoitd++S//FF/aUduh9L2j8D6VEpgm6OMIpdsGAiiVrx45SlDqnzrGav+nhFGHSuXCS/HzKk8GUrkcklwJSP3R+jQhqf+KZ7X93f6VUOGZTAmRXATW/t3yqX8lVAklDp3kInT8Knpk/S++F6WrjNSezlTpCNFISs9c6foUH8Uv+4qX+KWvoqcJpgNvvopSxQlgJUgJXo2P7MlfxUt/S6jnbxUIYCVICWaCwoKTPfmreOlvCVVCPU0ddfCbXISaznAxWhWTVpxGchpPWrGyL7kSqP1TeYr3FU8eytMECBA5nBIwBTCNp4R6RriECs8kJVQJ9YhAO9QzQTRBdET58SMvHWkCJCWURnjawab6lNDV8afxlVBg7JQAOhOK4ClB0vXTgv24M9Q0YFW09JdQZ4SERztUO5Rq6iT/8YRKR4Ja+rQjRej+uom3+Vfd0zOM8NGITe3d8H73jc0SavYqvPCbFlhaMG8feQJEcnWUtCKlb1rBaYJSe+1Q4TPdAmxakSVUdgiPR14KsBIqQqzuSLKXxrfaP3Ug+acOvLoj0h+doaRA8jQB6fopgeX/av0pAeRfqk/rxwQvoZSys3w14ccJHL5Kr+jTDs9DuQxKniYgXb+6g6yOR/7984QSoFO5GJ+2ZCVE+uSP4n13Aci+5CK88OG/XgTgVJ46mNpLD6HyR/bThE0TmO5P/Zuuf/trVAJICW2HOt8YVUGpgEqoC6MEqAiYEjhNgApICU/3p/5N1/8HXsNEfO+MGqQAAAAASUVORK5CYII="></div>
+        </div>
+        <section class="styled__Wrapper-sc-1g9ugl4-0 dCIUug"><h2 style="font-weight:bold">오늘의 상품 추천</h2>
+            <div class="styled__Wrapper-sc-32dn86-0 kSnlsd">
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW">
+                    <a class="sc-hzNEM dGgfzI" data-pid="271906733"
+                        href="/products/271906733?ref=%ED%99%88"
+                        rel="noopener noreferrer"
+                        target="_blank">
+                        <div class="sc-chbbiW efblGl">
+                            <img alt="상품 이미지" height="194"
+                                src="https://media.bunjang.co.kr/product/271906733_1_1718973871_w292.jpg" width="194">
+                            <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                            <div class="sc-fQejPQ emrreW"></div>
+                        </div>
+                        <div class="sc-kxynE bKyKhs">
+                            <div class="sc-cooIXK gEaPXm">kbo 프로야구 콜렉션 카드 nc 다이노스 박건우 핑크 패러렐</div>
+                            <div class="sc-gmeYpB dcncOY">
+                                <div class="sc-fcdeBU eTsiJR">20,000</div>
+                                <div class="sc-kZmsYB jMaEM"><span>12시간 전</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="274901033"
+                                                                          href="/products/274901033?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/274901033_1_1719219495_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">베베드피노 110</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">45,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>21시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="274508251"
+                                                                          href="/products/274508251?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/274508251_1_1719112128_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">닌텐도 스위치 프로콘 및 타이틀</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">95,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>3일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="260890438"
+                                                                          href="/products/260890438?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/260890438_1_1713676545_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">홀마크 미니어처 스노우볼 오너먼트</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">12,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>3일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="200580238"
+                                                                          href="/products/200580238?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/200580238_1_1664354144_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs">
+                            <div class="styled__Badge-sc-3zkh6z-1 kpHfXu">검수가능</div>
+                        </div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">입생로랑 금장 클러치</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">550,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>2일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="274960882"
+                                                                          href="/products/274960882?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/274960882_1_1719233942_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">KBO카드 양의지</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">18,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>15시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="272649299"
+                                                                          href="/products/272649299?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/272649299_1_1718511448_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">뉴진스 스티커 팩</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">30,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>9분 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="269980617"
+                                                                          href="/products/269980617?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/269980617_1_1717684874_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">엔하이픈 프리쿠라 비공굿 포카 정원 희승 제이 제이크 성훈 선우 니키</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">7,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>2일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="262681142"
+                                                                          href="/products/262681142?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/262681142_1_1716707655_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">다비드 김현수모델 외야 글러브</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">240,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>3일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="263874420"
+                                                                          href="/products/263874420?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/263874420_1_1716471547_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">로드,픽시 대차 ( 트리곤 d zero)</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">1,150,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>1주 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="270153865"
+                                                                          href="/products/270153865?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/270153865_1_1717750616_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">뉴진스 해린 인형 햄토린</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">30,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>2일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="272337913"
+                                                                          href="/products/272337913?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/272337913_1_1718879867_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">버켄스탁 보스턴 소프트 풋베드 토프 - 레귤러</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">140,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>2일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="271646891"
+                                                                          href="/products/271646891?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/271646891_1_1718181919_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">미즈노 글로벌엘리트</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">230,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>7일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="274215829"
+                                                                          href="/products/274215829?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/274215829_1_1719161569_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">(새상품)바이오레시피 핑크 헤어팩</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">29,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>2일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="272958943"
+                                                                          href="/products/272958943?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/272958943_1_1719147331_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs">
+                            <div class="styled__Badge-sc-3zkh6z-1 kpHfXu">검수가능</div>
+                        </div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">뉴발란스 준야와타나베 574 레거시 네이비 블랙</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">120,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>15시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="234191794"
+                                                                          href="/products/234191794?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/234191794_1_1707185504_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">식코 슈터 후드</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">200,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>6일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="263038928"
+                                                                          href="/products/263038928?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/263038928_1_1718364186_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">제베원 둥둥베이스원 웅둥이 짱둥이 키링 jiwoong hao zb1</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">4,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>4일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="264016411"
+                                                                          href="/products/264016411?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/264016411_1_1719204347_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">s1000rr 아크라 풀배기</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">7,500,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>2일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="262940614"
+                                                                          href="/products/262940614?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/262940614_1_1718934548_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">탑텐 마,레이온 겨자색 롱원피스</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">10,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>21시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="271762049"
+                                                                          href="/products/271762049?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/271762049_1_1718979535_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">나이키 ACG 썬 페어러 트레일 팬츠 아이언스톤 아시아 M(80)</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">115,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>6시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="250628663"
+                                                                          href="/products/250628663?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/250628663_1_1718609222_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs">
+                            <div class="styled__Badge-sc-3zkh6z-1 kpHfXu">검수가능</div>
+                        </div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">디올 빈티지 크로스백</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">340,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>7시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="272219003"
+                                                                          href="/products/272219003?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/272219003_1_1718889347_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">후지필름x70</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">800,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>1주 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="254340296"
+                                                                          href="/products/254340296?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/254340296_1_1713776939_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">(새상품)세터 빈티지 캐쥬얼 아플리케 볼캡 오가닉 베이지</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">32,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>22시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="248387844"
+                                                                          href="/products/248387844?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/248387844_1_1715293157_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">코다리마켓 바잇더불렛 무스탕</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">40,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>1주 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="274476126"
+                                                                          href="/products/274476126?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/274476126_1_1719093066_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">조던 스캇 후드티</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">210,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>3일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="274375279"
+                                                                          href="/products/274375279?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/274375279_1_1719053210_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">톰포드 TOMFORD 클러치 백(남녀) 가방 풀세트(네고 가능)</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">470,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>3일 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="261172006"
+                                                                          href="/products/261172006?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/261172006_1_1713881077_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">칼하트 립스탑 카고반바지 빈티지 카펜터 쇼츠 워크웨어 38</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">98,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>1주 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="230869252"
+                                                                          href="/products/230869252?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/230869252_1_1711530693_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">포유니온 강아지우비 XL</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">20,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>4시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="258515317"
+                                                                          href="/products/258515317?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/258515317_1_1711807980_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">빌레로이앤보흐 디자인나이프 27센치 디쉬(독일제조 미사용)</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">40,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>1주 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+                <div class="styled__ProductWrapper-sc-32dn86-1 eCFZgW"><a class="sc-hzNEM dGgfzI" data-pid="256590602"
+                                                                          href="/products/256590602?ref=%ED%99%88"
+                                                                          rel="noopener noreferrer"
+                                                                          target="_blank">
+                    <div class="sc-chbbiW efblGl"><img
+                            alt="상품 이미지" height="194"
+                            src="https://media.bunjang.co.kr/product/256590602_1_1710335362_w292.jpg" width="194">
+                        <div class="styled__BadgeArea-sc-3zkh6z-0 dwFxLs"></div>
+                        <div class="sc-fQejPQ emrreW"></div>
+                    </div>
+                    <div class="sc-kxynE bKyKhs">
+                        <div class="sc-cooIXK gEaPXm">발렌시아 벨티드 자켓(새상품)</div>
+                        <div class="sc-gmeYpB dcncOY">
+                            <div class="sc-fcdeBU eTsiJR">124,000</div>
+                            <div class="sc-kZmsYB jMaEM"><span>4시간 전</span></div>
+                        </div>
+                    </div>
+                </a></div>
+            </div>
+            <div></div>
+        </section>
+    </div>
+</div>
+
+<!-- 검색 화면 -->
+<div id="items">
+
+</div>
+
+</body>
+</html>

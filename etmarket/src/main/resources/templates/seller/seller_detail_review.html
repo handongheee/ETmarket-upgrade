@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/seller_detail_review.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/seller-detail.js"></script>
+    <script src="/js/header.js"></script>
+
+    <title>Title</title>
+
+</head>
+<body>
+<div th:replace="fragments/header :: menu1">메뉴1부분</div>
+
+<div th:replace="fragments/header :: menu2">메뉴2부분</div>
+
+<div class="store-wrapper">
+    <div class="profile-container">
+        <div class="profile-details">
+            <div class="profile-image-section">
+                <div class="profile-image-wrapper">
+                    <div class="profile-image-box">
+                        <div class="profile-image-inner">
+                            <div class="profile-image-content">
+                                <div th:if="${sellerDetailDto.getSellerImgUrl() != 'NoImage'}" th:attr="style='background-image: url(' + ${sellerDetailDto.getSellerImgUrl()} + ');'" class="profile-image-before">::before</div>
+                                <div th:if="${sellerDetailDto.getSellerImgUrl() == 'NoImage'}" class="profile-image-before default-profile-image">::before</div>
+                            </div>
+                            <div class="profile-info">
+                                <img th:if="${sellerDetailDto.getSellerImgUrl() != 'NoImage'}" th:src="${sellerDetailDto.getSellerImgUrl()}" class="profile-image" width="100" height="100" alt="판매자 프로필 이미지">
+                                <img th:if="${sellerDetailDto.getSellerImgUrl() == 'NoImage'}" src="/image/basic_profile_image.png" class="profile-image" width="100" height="100" alt="기본 프로필 이미지">
+                                <div class="rating-container"></div>
+                                <div class="rating-stars">
+                                    <span th:unless="${sellerDetailDto.getAvgReviewScore() == 0}" th:each="star : ${#numbers.sequence(1, sellerDetailDto.getAvgReviewScore())}">
+                                        <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                    </span>
+                                    <span th:if="${sellerDetailDto.getAvgReviewScore() % 1.0 != 0}">
+                                        <img src="/image/rating_star_half.png" width="15" height="14" alt="반 별점 이미지">
+                                    </span>
+                                    <span th:if="${sellerDetailDto.getAvgReviewScore() == 0.0}">
+                                        <img src="/image/empty_rating_star.png" width="15" height="14" alt="빈 별점 이미지">
+                                        <img src="/image/empty_rating_star.png" width="15" height="14" alt="빈 별점 이미지">
+                                        <img src="/image/empty_rating_star.png" width="15" height="14" alt="빈 별점 이미지">
+                                        <img src="/image/empty_rating_star.png" width="15" height="14" alt="빈 별점 이미지">
+                                        <img src="/image/empty_rating_star.png" width="15" height="14" alt="빈 별점 이미지">
+                                    </span>
+                                </div>
+                                <div class="profile-links-box">
+                                    <a th:href="@{/seller/{sellerId}/items(sellerId=${sellerDetailDto.getSellerId()})}" class="profile-link">
+                                        상품
+                                        <b th:text="${sellerDetailDto.getTotalItemCount()}"></b>
+                                    </a>
+                                    <a href="" class="profile-link">
+                                        거래완료
+                                        <b th:text="${sellerDetailDto.getTransactionCount()}"></b>
+                                    </a>
+                                </div>
+                                <div th:if="${sellerDetailDto.getSellerId() == uid}" class="manage-box"><a class="manage-link" href="/deal/manage">내 상품 관리</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-info-container">
+                    <div class="profile-info-box">
+                        <div class="seller-name" th:text="${sellerDetailDto.getSellerName()}">Seller Nickname</div>
+                    </div>
+                    <div class="seller-detail-box">
+                        <div class="seller-detail">
+                            <img src="/image/shop_open.png" width="14" height="13" alt="상점 오픈 아이콘">
+                            판매시작일
+                            <div class="days-ago" th:text="${sellerDetailDto.getSalesStartDate()}"></div>
+                        </div>
+                        <div class="seller-detail">
+                            <img src="/image/sell_icon.png" width="14" height="13" alt="상품판매 아이콘">
+                            상품판매
+                            <div class="sold-count" th:text="${sellerDetailDto.getSellCount()}">transactionscount</div>
+                        </div>
+                    </div>
+                    <div class="store-description" th:text="${sellerDetailDto.getIntroDescription()}">
+                        store description
+                    </div>
+                    <div th:unless="${sellerDetailDto.getSellerId() == uid}" class="report-store">
+                        <a th:href="@{/report/seller(uid=${sellerDetailDto.getSellerId()})}" class="report-link">
+                            <img src="/image/report_icon.png" width="14" height="14" alt="신고하기 아이콘">
+                            신고하기
+                        </a>
+                    </div>
+                    <div th:if="${sellerDetailDto.getSellerId() == uid}" class="modify-mypage-box">
+                        <button class="btn-modify-introduce" th:attr="data-user-id=${uid}">소개글 수정</button>
+                        <button class="btn-modify-mypage">
+                            <a href="/seller/mypage" class="mypage-link">
+                                마이페이지 수정
+                            </a>
+                        </button>
+                    </div>
+                    <div id="modify-container"\ class="hidden">
+                        <div>
+                            <textarea id="store-description-textarea" maxlength="1000"></textarea>
+                            <span id="char-count">0/1000</span>
+                        </div>
+                        <button id="confirm-button" type="button">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-section">
+                <div class="nav-link-list">
+                    <a th:href="@{/seller/{sellerId}/items(sellerId=${sellerDetailDto.getSellerId()})}" class="product-tab">
+                        상품
+                        <span class="product-count" th:text="${sellerDetailDto.getTotalItemCount()}">itemcount</span>
+                    </a>
+                    <a th:href="@{/seller/{sellerId}/reviews(sellerId=${sellerDetailDto.getSellerId()})}" class="review-tab">
+                        후기
+                        <span class="review-count" th:text="${sellerDetailDto.getReviewCount()}">reviewcount</span>
+                    </a>
+                </div>
+            </div>
+            <div class="a1">
+                <div class="a2">
+                    <div class="a3">
+                        <div class="a4">
+                            <div class="a5">
+                                판매자 후기
+                                <span class="a6" th:text="${sellerDetailDto.getReviewCount()}" >reviewcount</span>
+                            </div>
+                            <div th:if="${sellerDetailDto.getReviewDtoList().size() != 0}" class="b5">
+                                <div class="b6">
+                                    <div class="a7">
+                                        <div class="a8" th:text="${sellerDetailDto.getAvgReviewScore()}">reviewscore</div>
+                                        <div class="b8">
+                                            <span th:unless="${sellerDetailDto.getAvgReviewScore() == 0}" th:each="star : ${#numbers.sequence(1, sellerDetailDto.getAvgReviewScore())}">
+                                                <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            </span>
+                                                    <span th:if="${sellerDetailDto.getAvgReviewScore() % 1.0 != 0}">
+                                                <img src="/image/rating_star_half.png" width="15" height="14" alt="반 별점 이미지">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="b7"></div>
+                                    <div class="c7">
+                                        <div class="c8" th:text="${sellerDetailDto.getReviewScorePercentage()}+'%'"></div>
+                                        <div class="d8">만족후기</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if="${sellerDetailDto.getReviewDtoList().size() == 0}" class="no-review" th:text="'판매자 후기가 '+'없습니다'"></div>
+                    <div class="b3">
+                        <div th:each="review : ${sellerDetailDto.getReviewDtoList()}" class="b4">
+                            <a th:href="@{/seller/{sellerId}/items(sellerId=${review.getReviewerId()})}" class="c5">
+                                <img th:if="${review.getReviewerImgUrl() != 'NoImage'}" th:src="${review.getReviewerImgUrl()}" width="60" height="60" alt="리뷰어 이미지">
+                                <img th:if="${review.getReviewerImgUrl() == 'NoImage'}" src="/image/basic_profile_image.png" width="60" height="60" alt="리뷰어 이미지">
+                            </a>
+                            <div class="d5">
+                                <div class="c6">
+                                    <dv class="d7">
+                                        <a th:href="@{/seller/{sellerId}/items(sellerId=${review.getReviewerId()})}" class="e8" th:text="${review.getReviewerName()}">reviewername</a>
+                                        <div class="f8" th:text="${review.getReviewDate()}">redate</div>
+                                    </dv>
+                                    <a th:href="@{/seller/{sellerId}/reviews(sellerId=${review.getReviewerId()})}" class="e7">
+                                        <div class="g8">
+                                            <span th:each="star : ${#numbers.sequence(1, review.getReviewScore())}">
+                                                <img src="/image/rating_star.png" width="15" height="14" alt="별점 이미지">
+                                            </span>
+                                            <span th:if="${review.getReviewScore() % 1.0 != 0}">
+                                                <img src="/image/rating_star_half.png" width="15" height="14" alt="반 별점 이미지">
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a th:href="@{/items/{itemId}(itemId=${review.getReviewItemId()})}" class="d6">
+                                    <button class="f7" th:inline="text">
+                                        [[${review.getReviewItemName()}]]
+                                        <img src="/image/category_select_icon.png" width="6" height="10" alt="화살표 아이콘">
+                                    </button>
+                                </a>
+                                <div class="e6" th:text="${review.getReviewComment()}"></div>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div th:if="${sellerDetailDto.getReviewDtoList().size() != 0}" class="c3">
+                        <button class="c4">
+                            <div class="e5">판매자 후기 더보기</div>
+                        </button>
+                    </div>-->
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: company">기업설명부분</div>
+</body>
+</html>

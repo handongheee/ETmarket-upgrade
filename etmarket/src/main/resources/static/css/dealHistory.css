@@ -1,0 +1,302 @@
+.gfbMHq {
+    flex: 1 1 0%;
+    position: relative;
+    box-sizing: border-box;
+    line-height: 1.5;
+    display: grid;
+    grid-template: 1fr / 1fr;
+}
+
+.gfbMHq > div {
+    min-width: 0px;
+}
+
+.fUJWkv {
+    margin-bottom: 6px;
+}
+
+.iFhoNP {
+    box-sizing: border-box;
+    appearance: none;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-flow: row;
+    scrollbar-width: none;
+    overflow-x: scroll;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+
+.fUJWkv .bun-ui-tab {
+    margin: 0px;
+    width: 50%;
+    padding: 12px 0px 14px;
+}
+
+.fGKPCc, .fGKPCc > * {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 120%;
+    color: rgb(25, 25, 25);
+}
+
+.fGKPCc {
+    border: none;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    padding: 0.75rem 0px;
+    margin: 0px 1.875rem 0px 0px;
+}
+
+.fUJWkv .bun-ui-tab span {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    margin: auto;
+}
+
+.fGKPCc, .fGKPCc > * {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 120%;
+    color: rgb(25, 25, 25);
+}
+
+.fUJWkv .bun-ui-tab::after {
+    height: 2px;
+}
+
+ .fGKPCc:first-of-type::after {
+     left: auto;
+ }
+
+ .fGKPCc::after {
+     content: "";
+     position: absolute;
+     height: 0.188rem;
+     background: rgb(25, 25, 25);
+     border-radius: 1px;
+     width: 100%;
+     margin: 0px auto;
+     left: 0px;
+     right: 0px;
+     bottom: 0px;
+ }
+
+.jwboJy {
+    display: flex;
+    flex-direction: column;
+}
+
+.cpZssi {
+    padding: 0px 20px 20px;
+    border-radius: 6px;
+    border: 1px solid rgb(229, 229, 229);
+    color: rgb(25, 25, 25);
+}
+
+.eOxcte {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 16px 0px;
+}
+
+.cdAyDo {
+    margin: 0px;
+    background: transparent;
+    width: 100%;
+    border-width: 1px 0px 0px;
+    border-style: solid none none;
+    border-color: rgb(246, 246, 246);
+    border-image: initial;
+    height: 1px;
+}
+
+.gyvxQm {
+    padding-top: 12px;
+}
+
+.gAweBe {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 120%;
+}
+
+.DJdJS {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.DJdJS img + section {
+    margin-left: 12px;
+    min-width: 0px;
+}
+
+.DJdJS .sc-cd837f27-4 + .sc-cd837f27-5 {
+    margin-top: 4px;
+}
+
+ .bxbsbo {
+     white-space: nowrap;
+     text-overflow: ellipsis;
+     overflow: hidden;
+     color: rgb(102, 102, 102);
+     font-weight: 500;
+     font-size: 14px;
+     line-height: 120%;
+ }
+
+.DJdJS .sc-cd837f27-5 + .sc-cd837f27-6 {
+    margin-top: 4px;
+}
+
+ .QHfXe {
+     font-weight: 500;
+     font-size: 13px;
+     line-height: 120%;
+     color: rgb(140, 140, 140);
+ }
+
+.bjPSeA {
+    display: flex;
+}
+
+.bjPSeA button {
+    margin-top: 12px;
+    flex: 1 1 0%;
+}
+
+ .fbpoRr {
+     border: none;
+     overflow: visible;
+     cursor: pointer;
+     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+     padding: 12px 20px;
+     border-radius: 6px;
+     font-weight: 700;
+     font-size: 13px;
+     line-height: 120%;
+     background: #f2f3f7;
+ }
+
+/* 모달 전체 화면을 가리키는 배경 */
+.modalBackdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경색 */
+    z-index: 9999; /* 다른 요소들보다 위에 표시 */
+}
+
+/* 모달 창 */
+.ratingModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+    z-index: 10000; /* 배경보다 더 위에 표시 */
+}
+
+/* 모달 창 내부 요소들의 스타일 */
+.ratingModal h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.ratingModal input,
+.ratingModal textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.ratingModal .submitRatingButton {
+    padding: 10px 20px;
+    background-color: #4eb006;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.item_status {
+    color: #999999;
+    cursor: pointer;
+}
+
+.item_status.active {
+    color: #4eb006;
+    font-weight: bolder;
+}
+
+/* 별점 */
+.rating {
+    float: none;
+    width: 200px;
+    display: flex;
+}
+
+.rating__input {
+    display: none;
+}
+
+.rating__label {
+    width: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.rating__label .star-icon {
+    width: 20px;
+    height: 40px;
+    display: block;
+    position: relative;
+    left: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="lightgray"><path d="M12 .587l3.668 7.429L24 9.432l-6 5.847 1.417 8.256L12 18.896 4.583 23.535 6 15.679 0 9.432l8.332-1.416L12 .587z"/></svg>') no-repeat;
+    background-size: 40px;
+}
+
+.rating__label--half .star-icon {
+    background-position: left;
+}
+
+.rating__label--full .star-icon {
+    background-position: -20px;
+}
+
+.rating__label .star-icon.filled {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2107/2107957.png');
+}
+
+.rating.readonly .star-icon {
+    opacity: 0.7;
+    cursor: default;
+}
+
+
+
